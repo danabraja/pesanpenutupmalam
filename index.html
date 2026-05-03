@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
+
 @font-face {
   font-family: 'Honeybee';
   src: url('Honeybee.ttf') format('truetype');
@@ -33,19 +34,30 @@ body {
   border-radius: 25px;
   padding: 25px;
   margin: 20px;
+  box-shadow: 0 0 25px rgba(255,105,180,0.5);
 }
 
 button {
   padding: 12px 25px;
   border: none;
   border-radius: 30px;
-  background: linear-gradient(45deg, #ff1a75, #ff66b2);
+  background: linear-gradient(45deg,#ff1a75,#ff66b2);
   color: white;
+  font-weight: bold;
   cursor: pointer;
+}
+
+textarea, input {
+  width: 80%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: none;
 }
 
 .hidden { display: none; }
 
+/* ENVELOPE */
 .envelope {
   width: 200px;
   height: 130px;
@@ -62,7 +74,6 @@ button {
   height: 100%;
   background: #ff1a75;
   clip-path: polygon(0 0, 50% 50%, 100% 0);
-  transition: 0.6s;
 }
 
 .letter {
@@ -73,25 +84,14 @@ button {
   color: #ff4da6;
   top: 5%;
   left: 5%;
-  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 40px;
 }
 
-.envelope.open .flap {
-  transform: rotateX(180deg);
-}
+.step { display: none; }
 
-.heart {
-  position: fixed;
-  animation: float 6s linear infinite;
-}
-
-@keyframes float {
-  0% { transform: translateY(100vh); opacity: 1; }
-  100% { transform: translateY(-10vh); opacity: 0; }
-}
 </style>
 </head>
 
@@ -103,143 +103,184 @@ button {
     <div class="flap"></div>
     <div class="letter">💌</div>
   </div>
-  <p>Klik suratnyaa</p>
+  <p>pencet suratnyaa</p>
 </div>
 
 <!-- INTRO -->
 <div id="intro" class="container card hidden">
-  <h1>💌 Sepucuk kata di ujung hari</h1>
-  <button onclick="start()">Buka</button>
+  <h1>💌Sepucuk kata di ujung hariiii</h1>
+  <div>untuk Chloee</div>
+  <button onclick="start()">Bukaa</button>
 </div>
 
 <!-- PASSWORD -->
 <div id="passwordPage" class="container card hidden">
-  <h2>Masukin secret code</h2>
+  <h2>eitss masukin secret code dluu yaaa</h2>
   <input type="password" id="password">
   <button onclick="checkPassword()">Masuk</button>
 </div>
 
-<!-- MESSAGE -->
+<!-- PESAN -->
 <div id="messagePage" class="container card hidden">
-  <p>
-  selamat malam Cantik 💖<br><br>
-  semoga kamu selalu sehat, bahagia, dan dimudahkan semuanya 🌙
-  </p>
-  <button onclick="nextPage('q1')">Lanjut</button>
+
+<p>Selamat malam Cantikkkk 💖</p>
+
+<p>Gimana hari ini? Capek nggak? Atau ada hal yang bikin kepala lu penuh banget sampe rasanya pengen berhenti sebentar aja? Cerita lah dikit ke gw, jangan dipendem sendiri terus. Gw pengen tau hari lu kayak apa, baik itu yang enak atau yang bikin kesel.</p>
+
+<p>Gw doain ya, semoga semua hal yang lu jalanin hari ini walaupun berat, tetap ada hasil baiknya. Semoga Tuhan lancarin urusan lu, dimudahin hidup lu, ditenangin pikirannya, dan dijaga hatinya. Kalau tadi ada hal yang bikin lu capek, semoga malam ini jadi momen buat lu istirahat bener-bener, bukan cuma tidur tapi juga nenangin diri.</p>
+
+<p>Semangat ya apa pun yang lu lakukan, bahkan waktu scroll semangat ya scrollnya 😄 Maaf ya kalo ada orang kaya gw yang selalu ganggu waktu lu, dan makasih juga ya udah ada di hidup gw. Lu selalu menghibur lewat chat atau apapun itu.</p>
+
+<p>Tapi jujur ya… aneh nggak sih? Gw kadang mikir, hari gw tuh jadi agak beda sejak ada lu. Bukan karena hal besar, tapi karena hal kecil kayak nunggu kabar lu, atau sekadar kepikiran “lu lagi ngapain ya sekarang?” Kayak… lu tuh tipe orang yang bikin candu.</p>
+
+<p>Gw nggak tau lu sadar atau nggak, tapi tiap hari gw selalu nyempetin mikirin lu. Pengen chat tapi takut ganggu, jadi gw tahan sambil sibukin diri.</p>
+
+<p>Harusnya orang bisa biasa aja kalau nggak ada kabar dari seseorang, tapi sama lu beda… gw malah nunggu.</p>
+
+<p>Gw kira awalnya lu cuma lewat doang di hidup gw, ternyata lu malah betah banget tinggal di pikiran gw tanpa minta izin.</p>
+
+<p>Kalau ditanya kenapa gw masih sering mikirin lu, gw juga nggak punya jawaban yang logis… yang jelas itu kejadian terus tanpa bisa gw stop.</p>
+
+<p>Lucunya, makin gw coba biasa aja, malah makin kerasa kalau lu punya tempat sendiri di kepala gw.</p>
+
+<p>Gw nggak tau ini namanya apa, tapi kalau suatu hari lu ngerasa ada yang diam-diam peduli sama lu, bisa jadi itu gw.</p>
+
+<p>Udah ya, jangan tidur terlalu malem. Mata lu juga butuh istirahat, bukan cuma pikiran.  
+Gw harap malem ini lu tidur nyenyak, mimpi yang enak, dan bangun besok dengan mood yang lebih bagus.</p>
+
+<p>Good night ya, cantik 🌙💖</p>
+
+<button onclick="next('q1')">Lanjuttt</button>
+
 </div>
 
-<!-- Q1 -->
-<div id="q1" class="container card hidden">
-  <h3>Apa kabar hari ini?</h3>
-  <textarea id="jawab1"></textarea>
-  <button onclick="nextPage('q2')">Lanjut</button>
+<!-- Q -->
+<div id="q1" class="step">
+<h3>Apa kabar lu hari ini?</h3>
+<textarea id="jawab1"></textarea>
+<button onclick="cekQ1()">Lanjut</button>
 </div>
 
-<!-- Q2 -->
-<div id="q2" class="container card hidden">
-  <h3>Ceritain harimu</h3>
-  <textarea id="jawab2"></textarea>
-  <button onclick="nextPage('q3')">Lanjut</button>
+<div id="q2" class="step">
+<h3>ceritain dong hari ini gimana?</h3>
+<textarea id="jawab2"></textarea>
+<button onclick="cekQ2()">Lanjut</button>
 </div>
 
-<!-- Q3 -->
-<div id="q3" class="container card hidden">
-  <h3>Menurut kamu aku gimana?</h3>
-  <textarea id="jawab3"></textarea>
-  <button onclick="nextPage('q4')">Lanjut</button>
+<div id="q3" class="step">
+<h3>Menurut lu gw gimana sih orangnya?</h3>
+<textarea id="jawab3"></textarea>
+<button onclick="cekQ3()">Lanjut</button>
 </div>
 
-<!-- Q4 -->
-<div id="q4" class="container card hidden">
-  <h3>Harapan kamu?</h3>
-  <textarea id="jawab4"></textarea>
-  <button onclick="send()">Kirim</button>
+<div id="q4" class="step">
+<h3>Harapanlu di bulan ini dong???</h3>
+<textarea id="jawab4"></textarea>
+<button onclick="cekQ4()">Kirim</button>
 </div>
 
 <!-- CLOSING -->
 <div id="closing" class="container card hidden">
-  <h1>Good Night 💖</h1>
+<h1>Good Nightttt Chloee 💖</h1>
+<p>godd nightt</p>
 </div>
 
-<!-- AUDIO -->
+<!-- MUSIC -->
 <audio id="music" loop>
-  <source src="melukis-senja.mp3" type="audio/mp3">
+<source src="melukis-senja.mp3" type="audio/mp3">
 </audio>
 
 <script>
 
 function openEnvelope(){
-  document.querySelector('.envelope').classList.add('open');
-
-  setTimeout(()=>{
-    document.getElementById('envelopePage').classList.add('hidden');
-    document.getElementById('intro').classList.remove('hidden');
-  }, 800);
+  document.getElementById("envelopePage").classList.add("hidden");
+  document.getElementById("intro").classList.remove("hidden");
 }
 
-/* 🔥 MUSIK NYALA DI SINI (PAS KLIK BUKA) */
 function start(){
-  document.getElementById('intro').classList.add('hidden');
-  document.getElementById('passwordPage').classList.remove('hidden');
+  document.getElementById("intro").classList.add("hidden");
+  document.getElementById("passwordPage").classList.remove("hidden");
 
-  const music = document.getElementById("music");
-  music.volume = 0.6;
-  music.play().catch(err => console.log("music blocked:", err));
-
-  createHearts();
+  document.getElementById("music").play().catch(()=>{});
 }
 
 function checkPassword(){
   let pw = document.getElementById("password").value;
 
   if(pw === "chloecantik"){
-    document.getElementById('passwordPage').classList.add('hidden');
-    document.getElementById('messagePage').classList.remove('hidden');
+    document.getElementById("passwordPage").classList.add("hidden");
+    document.getElementById("messagePage").classList.remove("hidden");
   } else {
-    alert("Password salah 😅");
+    alert("kan akuu udah kirim terus di iggg");
   }
 }
 
-function nextPage(id){
-  document.querySelectorAll('.container').forEach(e => e.classList.add('hidden'));
-  document.getElementById(id).classList.remove('hidden');
+function next(id){
+  document.querySelectorAll('.step, .container').forEach(e=>{
+    if(e.id !== "envelopePage") e.classList.add('hidden');
+  });
+
+  const target = document.getElementById(id);
+  if(target){
+    target.classList.remove('hidden');
+    window.scrollTo(0,0);
+  }
+}
+
+/* VALIDASI WAJIB ISI */
+function cekQ1(){
+  const val = document.getElementById("jawab1").value.trim();
+  if(!val){
+    alert("wajib di isi ya cantik, sama isinya yang benr yaaa");
+    return;
+  }
+  next('q2');
+}
+
+function cekQ2(){
+  const val = document.getElementById("jawab2").value.trim();
+  if(!val){
+    alert("wajib di isi ya cantik, sama isinya yang benr yaaa");
+    return;
+  }
+  next('q3');
+}
+
+function cekQ3(){
+  const val = document.getElementById("jawab3").value.trim();
+  if(!val){
+    alert("wajib di isi ya cantik, sama isinya yang benr yaaa");
+    return;
+  }
+  next('q4');
+}
+
+function cekQ4(){
+  const val = document.getElementById("jawab4").value.trim();
+  if(!val){
+    alert("wajib di isi ya cantik, sama isinya yang benr yaaa");
+    return;
+  }
+  send();
 }
 
 function send(){
-  let a1 = document.getElementById("jawab1").value;
-  let a2 = document.getElementById("jawab2").value;
-  let a3 = document.getElementById("jawab3").value;
-  let a4 = document.getElementById("jawab4").value;
-
-  if(!a4) return alert("Isi dulu ya 💖");
-
   let formData = new FormData();
-  formData.append("Kabar", a1);
-  formData.append("Cerita", a2);
-  formData.append("Pendapat", a3);
-  formData.append("Harapan", a4);
+
+  formData.append("Kabar", document.getElementById("jawab1").value);
+  formData.append("Cerita", document.getElementById("jawab2").value);
+  formData.append("Pendapat", document.getElementById("jawab3").value);
+  formData.append("Harapan", document.getElementById("jawab4").value);
 
   fetch("https://formspree.io/f/xpqbqrka", {
-    method: "POST",
-    body: formData,
-    headers: { 'Accept': 'application/json' }
+    method:"POST",
+    body:formData,
+    headers:{'Accept':'application/json'}
   }).then(res=>{
     if(res.ok){
-      nextPage('closing');
-      document.body.style.opacity = "0.7";
+      next('closing');
     }
   });
-}
-
-function createHearts(){
-  setInterval(()=>{
-    let h = document.createElement("div");
-    h.className = "heart";
-    h.innerHTML = "💖";
-    h.style.left = Math.random()*100 + "vw";
-    document.body.appendChild(h);
-    setTimeout(()=>h.remove(),6000);
-  },400);
 }
 
 </script>
