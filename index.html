@@ -254,6 +254,7 @@ Good night ya, cantik 🌙💖
 </p>
 
 <button onclick="next('q1')">Lanjuttt</button>
+</div>
 
 <!-- Q1 -->
 <div id="q1" class="container card hidden">
@@ -280,7 +281,7 @@ Good night ya, cantik 🌙💖
 <div id="q4" class="container card hidden">
   <h3>Harapanlu di bulan ini dong???</h3>
   <textarea id="jawab4"></textarea>
-  <button onclick="send()">Kirim</button>
+  <button onclick="send()">Kirimm</button>
 </div>
 
 <!-- CLOSING -->
@@ -305,10 +306,9 @@ function openEnvelope(){
   }, 800);
 }
 
-/* 🔥 FIX MUSIK ONLY (INI YANG DIPERBAIKI) */
 function start(){
-  intro.classList.add('hidden');
-  passwordPage.classList.remove('hidden');
+  document.getElementById('intro').classList.add('hidden');
+  document.getElementById('passwordPage').classList.remove('hidden');
 
   const music = document.getElementById("music");
   music.volume = 0.6;
@@ -331,7 +331,7 @@ function checkPassword(){
     passwordPage.classList.add('hidden');
     messagePage.classList.remove('hidden');
   } else {
-    alert("kan gw udh sring kirimmm, yg diulang2 ituloh");
+    alert("kan gw udh sring kirimmm di ig, yg diulang2 ituloh");
   }
 }
 
