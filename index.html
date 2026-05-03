@@ -57,6 +57,15 @@ textarea, input {
 
 .hidden { display: none; }
 
+/* STEP FIX */
+.step {
+  display: none;
+}
+
+.step.active {
+  display: block;
+}
+
 /* ENVELOPE */
 .envelope {
   width: 200px;
@@ -89,8 +98,6 @@ textarea, input {
   justify-content: center;
   font-size: 40px;
 }
-
-.step { display: none; }
 
 </style>
 </head>
@@ -127,26 +134,7 @@ textarea, input {
 
 <p>Gimana hari ini? Capek nggak? Atau ada hal yang bikin kepala lu penuh banget sampe rasanya pengen berhenti sebentar aja? Cerita lah dikit ke gw, jangan dipendem sendiri terus. Gw pengen tau hari lu kayak apa, baik itu yang enak atau yang bikin kesel.</p>
 
-<p>Gw doain ya, semoga semua hal yang lu jalanin hari ini walaupun berat, tetap ada hasil baiknya. Semoga Tuhan lancarin urusan lu, dimudahin hidup lu, ditenangin pikirannya, dan dijaga hatinya. Kalau tadi ada hal yang bikin lu capek, semoga malam ini jadi momen buat lu istirahat bener-bener, bukan cuma tidur tapi juga nenangin diri.</p>
-
-<p>Semangat ya apa pun yang lu lakukan, bahkan waktu scroll semangat ya scrollnya 😄 Maaf ya kalo ada orang kaya gw yang selalu ganggu waktu lu, dan makasih juga ya udah ada di hidup gw. Lu selalu menghibur lewat chat atau apapun itu.</p>
-
-<p>Tapi jujur ya… aneh nggak sih? Gw kadang mikir, hari gw tuh jadi agak beda sejak ada lu. Bukan karena hal besar, tapi karena hal kecil kayak nunggu kabar lu, atau sekadar kepikiran “lu lagi ngapain ya sekarang?” Kayak… lu tuh tipe orang yang bikin candu.</p>
-
-<p>Gw nggak tau lu sadar atau nggak, tapi tiap hari gw selalu nyempetin mikirin lu. Pengen chat tapi takut ganggu, jadi gw tahan sambil sibukin diri.</p>
-
-<p>Harusnya orang bisa biasa aja kalau nggak ada kabar dari seseorang, tapi sama lu beda… gw malah nunggu.</p>
-
-<p>Gw kira awalnya lu cuma lewat doang di hidup gw, ternyata lu malah betah banget tinggal di pikiran gw tanpa minta izin.</p>
-
-<p>Kalau ditanya kenapa gw masih sering mikirin lu, gw juga nggak punya jawaban yang logis… yang jelas itu kejadian terus tanpa bisa gw stop.</p>
-
-<p>Lucunya, makin gw coba biasa aja, malah makin kerasa kalau lu punya tempat sendiri di kepala gw.</p>
-
-<p>Gw nggak tau ini namanya apa, tapi kalau suatu hari lu ngerasa ada yang diam-diam peduli sama lu, bisa jadi itu gw.</p>
-
-<p>Udah ya, jangan tidur terlalu malem. Mata lu juga butuh istirahat, bukan cuma pikiran.  
-Gw harap malem ini lu tidur nyenyak, mimpi yang enak, dan bangun besok dengan mood yang lebih bagus.</p>
+<p>Gw doain ya, semoga semua hal yang lu jalanin hari ini walaupun berat, tetap ada hasil baiknya. Semoga Tuhan lancarin urusan lu, dimudahin hidup lu, ditenangin pikirannya, dan dijaga hatinya.</p>
 
 <p>Good night ya, cantik 🌙💖</p>
 
@@ -154,25 +142,28 @@ Gw harap malem ini lu tidur nyenyak, mimpi yang enak, dan bangun besok dengan mo
 
 </div>
 
-<!-- Q -->
+<!-- Q1 -->
 <div id="q1" class="step">
 <h3>Apa kabar lu hari ini?</h3>
 <textarea id="jawab1"></textarea>
 <button onclick="cekQ1()">Lanjut</button>
 </div>
 
+<!-- Q2 -->
 <div id="q2" class="step">
 <h3>ceritain dong hari ini gimana?</h3>
 <textarea id="jawab2"></textarea>
 <button onclick="cekQ2()">Lanjut</button>
 </div>
 
+<!-- Q3 -->
 <div id="q3" class="step">
 <h3>Menurut lu gw gimana sih orangnya?</h3>
 <textarea id="jawab3"></textarea>
 <button onclick="cekQ3()">Lanjut</button>
 </div>
 
+<!-- Q4 -->
 <div id="q4" class="step">
 <h3>Harapanlu di bulan ini dong???</h3>
 <textarea id="jawab4"></textarea>
@@ -214,17 +205,18 @@ function checkPassword(){
   }
 }
 
-/* 🔥 FIX NAVIGASI FULL */
+/* 🔥 FIX NAVIGASI FINAL */
 function next(id){
 
   document.getElementById("messagePage").classList.add("hidden");
+
   document.querySelectorAll('.step').forEach(e=>{
-    e.classList.add('hidden');
+    e.classList.remove('active');
   });
 
-  let target = document.getElementById(id);
+  const target = document.getElementById(id);
   if(target){
-    target.classList.remove('hidden');
+    target.classList.add('active');
     window.scrollTo(0,0);
   }
 }
@@ -232,7 +224,7 @@ function next(id){
 /* VALIDASI */
 function cekQ1(){
   if(!jawab1.value.trim()){
-    alert("wajib di isi ya cantik, sama isinya yang benr yaaa");
+    alert("wajib di isi ya cantik");
     return;
   }
   next('q2');
@@ -240,7 +232,7 @@ function cekQ1(){
 
 function cekQ2(){
   if(!jawab2.value.trim()){
-    alert("wajib di isi ya cantik, sama isinya yang benr yaaa");
+    alert("wajib di isi ya cantik");
     return;
   }
   next('q3');
@@ -248,7 +240,7 @@ function cekQ2(){
 
 function cekQ3(){
   if(!jawab3.value.trim()){
-    alert("wajib di isi ya cantik, sama isinya yang benr yaaa");
+    alert("wajib di isi ya cantik");
     return;
   }
   next('q4');
@@ -256,29 +248,10 @@ function cekQ3(){
 
 function cekQ4(){
   if(!jawab4.value.trim()){
-    alert("wajib di isi ya cantik, sama isinya yang benr yaaa");
+    alert("wajib di isi ya cantik");
     return;
   }
-  send();
-}
-
-function send(){
-  let formData = new FormData();
-
-  formData.append("Kabar", jawab1.value);
-  formData.append("Cerita", jawab2.value);
-  formData.append("Pendapat", jawab3.value);
-  formData.append("Harapan", jawab4.value);
-
-  fetch("https://formspree.io/f/xpqbqrka", {
-    method:"POST",
-    body:formData,
-    headers:{'Accept':'application/json'}
-  }).then(res=>{
-    if(res.ok){
-      next('closing');
-    }
-  });
+  next('closing');
 }
 
 </script>
