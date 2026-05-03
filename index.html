@@ -12,7 +12,11 @@
 /* FONT */
 @font-face {
   font-family: 'Honeybee';
-  src: url('../Honeybee.ttf') format('truetype');
+  src: url('Honeybee.ttf') format('truetype');
+}
+
+html, body {
+  height: 100%;
 }
 
 body {
@@ -31,20 +35,6 @@ body {
   text-align: center;
   overflow-x: hidden;
   transition: 1s;
-}
-
-body {
-  margin: 0;
-  font-family: 'Honeybee', 'Poppins', sans-serif;
-  min-height: 100vh;
-
-  color: white;
-  text-align: center;
-  overflow-x: hidden;
-  transition: 1s;
-
-  position: relative;
-  z-index: 1;
 }
 
 .container {
@@ -255,7 +245,7 @@ textarea { height: 100px; }
 </div>
 
 <audio id="music" loop>
-  <source src="../melukis-senja.mp3" type="audio/mp3">
+  <source src="melukis-senja.mp3" type="audio/mp3">
 </audio>
 
 <script>
