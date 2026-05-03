@@ -143,8 +143,7 @@ textarea, input {
 
 <p>Lucunya, makin gw coba biasa aja, malah makin kerasa kalau lu punya tempat sendiri di kepala gw.</p>
 
-<p>Gw nggak tau ini namanya apa, tapi kalau suatu hari lu ngerasa ada yang diam-diam peduli sama lu, bisa jadi itu gw.
-maaf ya gw ovt bngt</p>
+<p>Gw nggak tau ini namanya apa, tapi kalau suatu hari lu ngerasa ada yang diam-diam peduli sama lu, bisa jadi itu gw.</p>
 
 <p>Udah ya, jangan tidur terlalu malem. Mata lu juga butuh istirahat, bukan cuma pikiran.  
 Gw harap malem ini lu tidur nyenyak, mimpi yang enak, dan bangun besok dengan mood yang lebih bagus.</p>
@@ -165,13 +164,13 @@ Gw harap malem ini lu tidur nyenyak, mimpi yang enak, dan bangun besok dengan mo
 <div id="q2" class="step">
 <h3>ceritain dong hari ini gimana?</h3>
 <textarea id="jawab2"></textarea>
-<button onclick="cekQ2()">Lanjutt</button>
+<button onclick="cekQ2()">Lanjut</button>
 </div>
 
 <div id="q3" class="step">
 <h3>Menurut lu gw gimana sih orangnya?</h3>
 <textarea id="jawab3"></textarea>
-<button onclick="cekQ3()">Lanjuttt</button>
+<button onclick="cekQ3()">Lanjut</button>
 </div>
 
 <div id="q4" class="step">
@@ -215,17 +214,15 @@ function checkPassword(){
   }
 }
 
-/* FIX UTAMA NAVIGASI */
+/* 🔥 FIX NAVIGASI FULL */
 function next(id){
 
   document.getElementById("messagePage").classList.add("hidden");
-  document.getElementById("closing").classList.add("hidden");
-
   document.querySelectorAll('.step').forEach(e=>{
     e.classList.add('hidden');
   });
 
-  const target = document.getElementById(id);
+  let target = document.getElementById(id);
   if(target){
     target.classList.remove('hidden');
     window.scrollTo(0,0);
@@ -234,8 +231,7 @@ function next(id){
 
 /* VALIDASI */
 function cekQ1(){
-  const val = document.getElementById("jawab1").value.trim();
-  if(!val){
+  if(!jawab1.value.trim()){
     alert("wajib di isi ya cantik, sama isinya yang benr yaaa");
     return;
   }
@@ -243,8 +239,7 @@ function cekQ1(){
 }
 
 function cekQ2(){
-  const val = document.getElementById("jawab2").value.trim();
-  if(!val){
+  if(!jawab2.value.trim()){
     alert("wajib di isi ya cantik, sama isinya yang benr yaaa");
     return;
   }
@@ -252,8 +247,7 @@ function cekQ2(){
 }
 
 function cekQ3(){
-  const val = document.getElementById("jawab3").value.trim();
-  if(!val){
+  if(!jawab3.value.trim()){
     alert("wajib di isi ya cantik, sama isinya yang benr yaaa");
     return;
   }
@@ -261,8 +255,7 @@ function cekQ3(){
 }
 
 function cekQ4(){
-  const val = document.getElementById("jawab4").value.trim();
-  if(!val){
+  if(!jawab4.value.trim()){
     alert("wajib di isi ya cantik, sama isinya yang benr yaaa");
     return;
   }
@@ -272,10 +265,10 @@ function cekQ4(){
 function send(){
   let formData = new FormData();
 
-  formData.append("Kabar", document.getElementById("jawab1").value);
-  formData.append("Cerita", document.getElementById("jawab2").value);
-  formData.append("Pendapat", document.getElementById("jawab3").value);
-  formData.append("Harapan", document.getElementById("jawab4").value);
+  formData.append("Kabar", jawab1.value);
+  formData.append("Cerita", jawab2.value);
+  formData.append("Pendapat", jawab3.value);
+  formData.append("Harapan", jawab4.value);
 
   fetch("https://formspree.io/f/xpqbqrka", {
     method:"POST",
