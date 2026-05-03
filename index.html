@@ -168,6 +168,7 @@ textarea { height: 100px; }
     opacity: 1;
   }
 }
+
 </style>
 </head>
 
@@ -179,9 +180,9 @@ textarea { height: 100px; }
     <div class="flap"></div>
     <div class="letter">💌</div>
   </div>
-  <p>Klik suratnyaa </p>
+  <p>pencet suratnyaa </p>
 </div>
-  
+
 <!-- INTRO -->
 <div id="intro" class="container card hidden">
   <h1>💌Sepucuk kata di ujung hariiii</h1>
@@ -199,12 +200,60 @@ textarea { height: 100px; }
 <!-- PESAN -->
 <div id="messagePage" class="container card hidden">
   <p>
-  selamat malam Cantikkkk <br><br>
-  balik lagi sama gw di pesan gw ini, maaf ya kalo pesan ini selalu mengganggu lu <br><br>
-  semoga lu sehat sehat trus ya, umur yang panjang, dan dijauhkan dari segala marah bahaya
-  </p>
-  <button onclick="next('q1')">Lanjuttt</button>
-</div>
+ <p>
+Selamat malam Cantikkkk 💖
+</p>
+
+<p>
+Gimana hari ini? Capek nggak? Atau ada hal yang bikin kepala lu penuh banget sampe rasanya pengen berhenti sebentar aja? Cerita lah dikit ke gw, jangan dipendem sendiri terus. Gw pengen tau hari lu kayak apa, baik itu yang enak atau yang bikin kesel.
+</p>
+
+<p>
+Gw doain ya, semoga semua hal yang lu jalanin hari ini walaupun berat, tetap ada hasil baiknya. Semoga Tuhan lancarin urusan lu, dimudahin hidup lu, ditenangin pikirannya, dan dijaga hatinya. Kalau tadi ada hal yang bikin lu capek, semoga malam ini jadi momen buat lu istirahat bener-bener, bukan cuma tidur tapi juga nenangin diri.
+</p>
+
+<p>
+Semangat ya apa pun yang lu lakukan, bahkan waktu scroll semangat ya scrollnya 😄 Maaf ya kalo ada orang kaya gw yang selalu ganggu waktu lu, dan makasih juga ya udah ada di hidup gw. Lu selalu menghibur lewat chat atau apapun itu.
+</p>
+
+<p>
+Tapi jujur ya… aneh nggak sih? Gw kadang mikir, hari gw tuh jadi agak beda sejak ada lu. Bukan karena hal besar, tapi karena hal kecil kayak nunggu kabar lu, atau sekadar kepikiran “lu lagi ngapain ya sekarang?” Kayak… lu tuh tipe orang yang bikin candu.
+</p>
+
+<p>
+Gw nggak tau lu sadar atau nggak, tapi tiap hari gw selalu nyempetin mikirin lu. Pengen chat tapi takut ganggu, jadi gw tahan sambil sibukin diri.
+</p>
+
+<p>
+Harusnya orang bisa biasa aja kalau nggak ada kabar dari seseorang, tapi sama lu beda… gw malah nunggu.
+</p>
+
+<p>
+Gw kira awalnya lu cuma lewat doang di hidup gw, ternyata lu malah betah banget tinggal di pikiran gw tanpa minta izin.
+</p>
+
+<p>
+Kalau ditanya kenapa gw masih sering mikirin lu, gw juga nggak punya jawaban yang logis… yang jelas itu kejadian terus tanpa bisa gw stop.
+</p>
+
+<p>
+Lucunya, makin gw coba biasa aja, malah makin kerasa kalau lu punya tempat sendiri di kepala gw.
+</p>
+
+<p>
+Gw nggak tau ini namanya apa, tapi kalau suatu hari lu ngerasa ada yang diam-diam peduli sama lu, bisa jadi itu gw.
+</p>
+
+<p>
+Udah ya, jangan tidur terlalu malem. Mata lu juga butuh istirahat, bukan cuma pikiran.  
+Gw harap malem ini lu tidur nyenyak, mimpi yang enak, dan bangun besok dengan mood yang lebih bagus.
+</p>
+
+<p>
+Good night ya, cantik 🌙💖
+</p>
+
+<button onclick="next('q1')">Lanjuttt</button>
 
 <!-- Q1 -->
 <div id="q1" class="container card hidden">
@@ -224,7 +273,7 @@ textarea { height: 100px; }
 <div id="q3" class="container card hidden">
   <h3>Menurut lu gw gimana sih orangnya?</h3>
   <textarea id="jawab3"></textarea>
-  <button onclick="next('q4')">Lanjuttt</button>
+  <button onclick="next('q4')">Lanjuttttt</button>
 </div>
 
 <!-- Q4 -->
@@ -237,6 +286,7 @@ textarea { height: 100px; }
 <!-- CLOSING -->
 <div id="closing" class="container card hidden">
   <h1>Good Nightttt Chloee 💖</h1>
+  <p>godd nightt</p>
 </div>
 
 <!-- AUDIO -->
@@ -255,7 +305,7 @@ function openEnvelope(){
   }, 800);
 }
 
-/* 🔥 FIX ONLY MUSIK DI SINI */
+/* 🔥 FIX MUSIK ONLY (INI YANG DIPERBAIKI) */
 function start(){
   intro.classList.add('hidden');
   passwordPage.classList.remove('hidden');
@@ -263,8 +313,8 @@ function start(){
   const music = document.getElementById("music");
   music.volume = 0.6;
 
-  // FIX AUTOPLAY BLOCK
   const playPromise = music.play();
+
   if (playPromise !== undefined) {
     playPromise.catch(() => {
       document.body.addEventListener("click", () => {
@@ -281,7 +331,7 @@ function checkPassword(){
     passwordPage.classList.add('hidden');
     messagePage.classList.remove('hidden');
   } else {
-    alert("Password salah 😅");
+    alert("kan gw udh sring kirimmm, yg diulang2 ituloh");
   }
 }
 
