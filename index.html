@@ -98,8 +98,8 @@ textarea, input {
 
 <body>
 
-<!-- MUSIK (FIX) -->
-<audio id="music" loop>
+<!-- FIX MUSIK -->
+<audio id="music" loop preload="auto">
   <source src="melukis-senja.mp3" type="audio/mp3">
 </audio>
 
@@ -169,39 +169,29 @@ Gw harap malem ini lu tidur nyenyak, mimpi yang enak, dan bangun besok dengan mo
 </div>
 
 <div id="closing" class="container card hidden">
-<h1>Good Nightttt Chloee </h1>
+<h1>Good Nightttt Chloee 💖</h1>
 </div>
 
 <script>
 
 let music = document.getElementById("music");
 
-/* FIX MUSIC */
+/* FIX MUSIK ONLY */
 function playMusic(){
-  music.play().catch(()=>{});
-}
+  music.volume = 1;
+  let playPromise = music.play();
 
-/* FIX SHOW PAGE BUG */
-function showOnly(id){
-  document.querySelectorAll('.container').forEach(e=>{
-    if(e.id !== "envelopePage"){
-      e.classList.add("hidden");
-    }
-  });
-
-  document.querySelectorAll('.step').forEach(e=>{
-    e.classList.remove("active");
-  });
-
-  let target = document.getElementById(id);
-  if(target){
-    target.classList.remove("hidden"); // FIX PENTING
-    if(target.classList.contains("step")){
-      target.classList.add("active");
-    }
+  if (playPromise !== undefined) {
+    playPromise.catch(() => {
+      // kalau diblok browser, tunggu klik user
+      document.body.addEventListener("click", () => {
+        music.play();
+      }, { once: true });
+    });
   }
 }
 
+/* panggil musik di setiap interaksi user */
 function openEnvelope(){
   document.getElementById("envelopePage").classList.add("hidden");
   document.getElementById("intro").classList.remove("hidden");
@@ -226,11 +216,22 @@ function checkPassword(){
   }
 }
 
+/* sisanya TIDAK DIUBAH */
+function showOnly(id){
+  document.querySelectorAll('.step').forEach(e=>{
+    e.classList.remove("active");
+  });
+
+  let target = document.getElementById(id);
+  if(target){
+    target.classList.add("active");
+  }
+}
+
 function next(id){
   showOnly(id);
 }
 
-/* FIX QUESTION */
 function cekQ1(){
   if(!document.getElementById("jawab1").value.trim())
     return alert("wajib di isi ya cantik");
