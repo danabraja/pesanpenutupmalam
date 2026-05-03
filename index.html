@@ -217,38 +217,60 @@ function checkPassword(){
 
 function next(id){
   document.querySelectorAll('.step, .container').forEach(e=>{
-    if(e.id !== "envelopePage") e.classList.add("hidden");
+    if(e.id !== "envelopePage") e.classList.add('hidden');
   });
-  document.getElementById(id).classList.remove("hidden");
+
+  const target = document.getElementById(id);
+  if(target){
+    target.classList.remove('hidden');
+    window.scrollTo(0,0);
+  }
 }
 
 /* VALIDASI WAJIB ISI */
 function cekQ1(){
-  if(jawab1.value.trim()===""){ alert("wajib di isi CANTIKK"); return; }
+  const val = document.getElementById("jawab1").value.trim();
+  if(!val){
+    alert("wajib di isi ya cantik, sama isinya yang benr yaaa");
+    return;
+  }
   next('q2');
 }
 
 function cekQ2(){
-  if(jawab2.value.trim()===""){ alert("Wajib di isi CANTIK"); return; }
+  const val = document.getElementById("jawab2").value.trim();
+  if(!val){
+    alert("wajib di isi ya cantik, sama isinya yang benr yaaa");
+    return;
+  }
   next('q3');
 }
 
 function cekQ3(){
-  if(jawab3.value.trim()===""){ alert("wajib di isi CANTIK"); return; }
+  const val = document.getElementById("jawab3").value.trim();
+  if(!val){
+    alert("wajib di isi ya cantik, sama isinya yang benr yaaa");
+    return;
+  }
   next('q4');
 }
 
 function cekQ4(){
-  if(jawab4.value.trim()===""){ alert("wajib di isi CANTIKK"); return; }
+  const val = document.getElementById("jawab4").value.trim();
+  if(!val){
+    alert("wajib di isi ya cantik, sama isinya yang benr yaaa");
+    return;
+  }
   send();
 }
 
 function send(){
   let formData = new FormData();
-  formData.append("Kabar", jawab1.value);
-  formData.append("Cerita", jawab2.value);
-  formData.append("Pendapat", jawab3.value);
-  formData.append("Harapan", jawab4.value);
+
+  formData.append("Kabar", document.getElementById("jawab1").value);
+  formData.append("Cerita", document.getElementById("jawab2").value);
+  formData.append("Pendapat", document.getElementById("jawab3").value);
+  formData.append("Harapan", document.getElementById("jawab4").value);
 
   fetch("https://formspree.io/f/xpqbqrka", {
     method:"POST",
