@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Surat Malam 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(rgba(255,105,180,0.4), rgba(0,0,0,0.6)),
+              url("bg.jpg") no-repeat center/cover;
+  color: white;
+  text-align: center;
+  overflow-x: hidden;
+  transition: 1s;
+}
+
+.container {
+  padding: 30px;
+  animation: fadeIn 0.8s ease;
+}
+
+.card {
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(15px);
+  border-radius: 25px;
+  padding: 25px;
+  margin: 20px;
+  box-shadow: 0 0 25px rgba(255, 105, 180, 0.5);
+}
+
+h1, h2 {
+  font-family: 'Pacifico', cursive;
+}
+
+button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(45deg, #ff1a75, #ff66b2);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 0 15px rgba(255,105,180,0.7);
+}
+
+button:hover {
+  transform: scale(1.08);
+}
+
+input, textarea {
+  width: 80%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 15px;
+  border: none;
+}
+
+textarea { height: 100px; }
+
+.hidden { display: none; }
+
+.heart {
+  position: fixed;
+  font-size: 20px;
+  animation: float 6s linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(100vh); opacity: 1; }
+  100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+@keyframes fadeIn {
+  from {opacity:0; transform: translateY(20px);}
+  to {opacity:1; transform: translateY(0);}
+}
+
+.fade-out {
+  animation: fadeOut 2s forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div id="intro" class="container card">
+  <h1>💌 Surat Malam untuk Chloee</h1>
+  <div>edisi pengantar tidur</div>
+  <button onclick="start()">Buka 💖</button>
+</div>
+
+<!-- PASSWORD -->
+<div id="passwordPage" class="container card hidden">
+  <h2>Password dulu ya 😆</h2>
+  <input type="password" id="password">
+  <button onclick="checkPassword()">Masuk</button>
+</div>
+
+<!-- PESAN -->
+<div id="messagePage" class="container card hidden">
+  <p>
+  selamat malam Chloee 🌙✨ <br><br>
+  balik lagi sama pesan random gw… 😆 <br><br>
+  semoga hari lu tetap baik ya 😁<br><br>
+  jangan lupa istirahat 🤍<br><br>
+  good night chloeeee 💖
+  </p>
+  <button onclick="next('q1')">Lanjut ➡️</button>
+</div>
+
+<!-- Q1 -->
+<div id="q1" class="container card hidden">
+  <h3>Apa kabar kamu hari ini?</h3>
+  <textarea id="jawab1"></textarea>
+  <button onclick="next('q2')">Lanjut</button>
+</div>
+
+<!-- Q2 -->
+<div id="q2" class="container card hidden">
+  <h3>Cerita hari ini?</h3>
+  <textarea id="jawab2"></textarea>
+  <button onclick="next('q3')">Lanjut</button>
+</div>
+
+<!-- Q3 -->
+<div id="q3" class="container card hidden">
+  <h3>Menurut kamu aku gimana?</h3>
+  <textarea id="jawab3"></textarea>
+  <button onclick="next('q4')">Lanjut</button>
+</div>
+
+<!-- Q4 -->
+<div id="q4" class="container card hidden">
+  <h3>Harapan kamu bulan ini?</h3>
+  <textarea id="jawab4"></textarea>
+  <button onclick="send()">Kirim 💌</button>
+</div>
+
+<!-- CLOSING -->
+<div id="closing" class="container card hidden">
+  <h1>Good Night 💖</h1>
+  <p>see you in dreams 🌙</p>
+</div>
+
+<audio id="music" loop>
+  <source src="melukis-senja.mp3" type="audio/mp3">
+</audio>
+
+<script>
+function start(){
+  intro.classList.add('hidden');
+  passwordPage.classList.remove('hidden');
+  createHearts();
+  music.play();
+}
+
+function checkPassword(){
+  if(password.value === "chloecantik"){
+    passwordPage.classList.add('hidden');
+    messagePage.classList.remove('hidden');
+  } else {
+    alert("Password salah 😅");
+  }
+}
+
+function next(id){
+  if(q1 && !q1.classList.contains('hidden') && !jawab1.value) return alert("Isi dulu 💖");
+  if(q2 && !q2.classList.contains('hidden') && !jawab2.value) return alert("Isi dulu 😆");
+  if(q3 && !q3.classList.contains('hidden') && !jawab3.value) return alert("Isi dulu 😏");
+
+  document.querySelectorAll('.container').forEach(e => e.classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+}
+
+function send(){
+  if(!jawab4.value) return alert("Harapan jangan kosong 🌙");
+
+  let formData = new FormData();
+  formData.append("Kabar", jawab1.value);
+  formData.append("Cerita", jawab2.value);
+  formData.append("Pendapat", jawab3.value);
+  formData.append("Harapan", jawab4.value);
+
+  fetch("https://formspree.io/f/xpqbqrka", {
+    method: "POST",
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  }).then(res=>{
+    if(res.ok){
+      next('closing');
+      setTimeout(()=>document.body.classList.add("fade-out"),2000);
+    }
+  });
+}
+
+function createHearts(){
+  setInterval(()=>{
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="💖";
+    h.style.left=Math.random()*100+"vw";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+  },400);
+}
+</script>
+
+</body>
+</html>
