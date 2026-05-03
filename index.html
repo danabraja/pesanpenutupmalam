@@ -199,8 +199,8 @@ textarea { height: 100px; }
 
 <!-- PESAN -->
 <div id="messagePage" class="container card hidden">
+
   <p>
- <p>
 Selamat malam Cantikkkk 💖
 </p>
 
@@ -255,6 +255,8 @@ Good night ya, cantik 🌙💖
 
 <button onclick="next('q1')">Lanjuttt</button>
 
+</div>
+
 <!-- Q1 -->
 <div id="q1" class="container card hidden">
   <h3>Apa kabar lu hari ini?</h3>
@@ -305,10 +307,9 @@ function openEnvelope(){
   }, 800);
 }
 
-/* 🔥 FIX MUSIK ONLY (INI YANG DIPERBAIKI) */
 function start(){
-  intro.classList.add('hidden');
-  passwordPage.classList.remove('hidden');
+  document.getElementById("intro").classList.add('hidden');
+  document.getElementById("passwordPage").classList.remove('hidden');
 
   const music = document.getElementById("music");
   music.volume = 0.6;
@@ -327,9 +328,11 @@ function start(){
 }
 
 function checkPassword(){
-  if(password.value === "chloecantik"){
-    passwordPage.classList.add('hidden');
-    messagePage.classList.remove('hidden');
+  const password = document.getElementById("password").value;
+
+  if(password === "chloecantik"){
+    document.getElementById('passwordPage').classList.add('hidden');
+    document.getElementById('messagePage').classList.remove('hidden');
   } else {
     alert("kan gw udh sring kirimmm, yg diulang2 ituloh");
   }
