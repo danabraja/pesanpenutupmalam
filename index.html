@@ -9,38 +9,24 @@
 
 <style>
 
-/* FONT */
 @font-face {
   font-family: 'Honeybee';
   src: url('Honeybee.ttf') format('truetype');
-}
-
-html, body {
-  height: 100%;
 }
 
 body {
   margin: 0;
   font-family: 'Honeybee', 'Poppins', sans-serif;
   min-height: 100vh;
-
   background: linear-gradient(rgba(255,105,180,0.3), rgba(0,0,0,0.5)),
               url("bg.jpg") no-repeat center center;
-
   background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
   color: white;
   text-align: center;
   overflow-x: hidden;
-  transition: 1s;
 }
 
-.container {
-  padding: 30px;
-  animation: fadeIn 0.8s ease;
-}
+.container { padding: 30px; }
 
 .card {
   background: rgba(255,255,255,0.2);
@@ -48,79 +34,38 @@ body {
   border-radius: 25px;
   padding: 25px;
   margin: 20px;
-  box-shadow: 0 0 25px rgba(255, 105, 180, 0.5);
-}
-
-h1, h2 {
-  font-family: 'Honeybee', cursive;
+  box-shadow: 0 0 25px rgba(255,105,180,0.5);
 }
 
 button {
   padding: 12px 25px;
   border: none;
   border-radius: 30px;
-  background: linear-gradient(45deg, #ff1a75, #ff66b2);
+  background: linear-gradient(45deg,#ff1a75,#ff66b2);
   color: white;
   font-weight: bold;
   cursor: pointer;
-  transition: 0.3s;
-  box-shadow: 0 0 15px rgba(255,105,180,0.7);
 }
 
-button:hover {
-  transform: scale(1.08);
-}
-
-input, textarea {
+textarea, input {
   width: 80%;
-  padding: 12px;
+  padding: 10px;
   margin: 10px 0;
-  border-radius: 15px;
+  border-radius: 10px;
   border: none;
 }
 
-textarea { height: 100px; }
-
 .hidden { display: none; }
-
-.heart {
-  position: fixed;
-  font-size: 20px;
-  animation: float 6s linear infinite;
-}
-
-@keyframes float {
-  0% { transform: translateY(100vh); opacity: 1; }
-  100% { transform: translateY(-10vh); opacity: 0; }
-}
-
-@keyframes fadeIn {
-  from {opacity:0; transform: translateY(20px);}
-  to {opacity:1; transform: translateY(0);}
-}
-
-.fade-out {
-  animation: fadeOut 2s forwards;
-}
-
-@keyframes fadeOut {
-  to {
-    opacity: 0;
-    transform: scale(1.1);
-  }
-}
 
 /* ENVELOPE */
 .envelope {
-  position: relative;
   width: 200px;
   height: 130px;
   background: #ff4da6;
   margin: 120px auto;
   border-radius: 10px;
   cursor: pointer;
-  box-shadow: 0 0 20px rgba(255,105,180,0.7);
-  animation: slideUp 1.2s ease;
+  position: relative;
 }
 
 .flap {
@@ -129,8 +74,6 @@ textarea { height: 100px; }
   height: 100%;
   background: #ff1a75;
   clip-path: polygon(0 0, 50% 50%, 100% 0);
-  transition: 0.6s;
-  transform-origin: top;
 }
 
 .letter {
@@ -141,33 +84,13 @@ textarea { height: 100px; }
   color: #ff4da6;
   top: 5%;
   left: 5%;
-  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 40px;
-  transform: translateY(20px);
-  transition: 0.6s;
 }
 
-.envelope.open .flap {
-  transform: rotateX(180deg);
-}
-
-.envelope.open .letter {
-  transform: translateY(-60px);
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(100vh);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
+.step { display: none; }
 
 </style>
 </head>
@@ -180,7 +103,7 @@ textarea { height: 100px; }
     <div class="flap"></div>
     <div class="letter">💌</div>
   </div>
-  <p>pencet suratnyaa </p>
+  <p>pencet suratnyaa</p>
 </div>
 
 <!-- INTRO -->
@@ -200,147 +123,124 @@ textarea { height: 100px; }
 <!-- PESAN -->
 <div id="messagePage" class="container card hidden">
 
-  <p>
-Selamat malam Cantikkkk 💖
-</p>
+<p>Selamat malam Cantikkkk 💖</p>
 
-<p>
-Gimana hari ini? Capek nggak? Atau ada hal yang bikin kepala lu penuh banget sampe rasanya pengen berhenti sebentar aja? Cerita lah dikit ke gw, jangan dipendem sendiri terus. Gw pengen tau hari lu kayak apa, baik itu yang enak atau yang bikin kesel.
-</p>
+<p>Gimana hari ini? Capek nggak? Atau ada hal yang bikin kepala lu penuh banget sampe rasanya pengen berhenti sebentar aja? Cerita lah dikit ke gw, jangan dipendem sendiri terus. Gw pengen tau hari lu kayak apa, baik itu yang enak atau yang bikin kesel.</p>
 
-<p>
-Gw doain ya, semoga semua hal yang lu jalanin hari ini walaupun berat, tetap ada hasil baiknya. Semoga Tuhan lancarin urusan lu, dimudahin hidup lu, ditenangin pikirannya, dan dijaga hatinya. Kalau tadi ada hal yang bikin lu capek, semoga malam ini jadi momen buat lu istirahat bener-bener, bukan cuma tidur tapi juga nenangin diri.
-</p>
+<p>Gw doain ya, semoga semua hal yang lu jalanin hari ini walaupun berat, tetap ada hasil baiknya. Semoga Tuhan lancarin urusan lu, dimudahin hidup lu, ditenangin pikirannya, dan dijaga hatinya. Kalau tadi ada hal yang bikin lu capek, semoga malam ini jadi momen buat lu istirahat bener-bener, bukan cuma tidur tapi juga nenangin diri.</p>
 
-<p>
-Semangat ya apa pun yang lu lakukan, bahkan waktu scroll semangat ya scrollnya 😄 Maaf ya kalo ada orang kaya gw yang selalu ganggu waktu lu, dan makasih juga ya udah ada di hidup gw. Lu selalu menghibur lewat chat atau apapun itu.
-</p>
+<p>Semangat ya apa pun yang lu lakukan, bahkan waktu scroll semangat ya scrollnya 😄 Maaf ya kalo ada orang kaya gw yang selalu ganggu waktu lu, dan makasih juga ya udah ada di hidup gw. Lu selalu menghibur lewat chat atau apapun itu.</p>
 
-<p>
-Tapi jujur ya… aneh nggak sih? Gw kadang mikir, hari gw tuh jadi agak beda sejak ada lu. Bukan karena hal besar, tapi karena hal kecil kayak nunggu kabar lu, atau sekadar kepikiran “lu lagi ngapain ya sekarang?” Kayak… lu tuh tipe orang yang bikin candu.
-</p>
+<p>Tapi jujur ya… aneh nggak sih? Gw kadang mikir, hari gw tuh jadi agak beda sejak ada lu. Bukan karena hal besar, tapi karena hal kecil kayak nunggu kabar lu, atau sekadar kepikiran “lu lagi ngapain ya sekarang?” Kayak… lu tuh tipe orang yang bikin candu.</p>
 
-<p>
-Gw nggak tau lu sadar atau nggak, tapi tiap hari gw selalu nyempetin mikirin lu. Pengen chat tapi takut ganggu, jadi gw tahan sambil sibukin diri.
-</p>
+<p>Gw nggak tau lu sadar atau nggak, tapi tiap hari gw selalu nyempetin mikirin lu. Pengen chat tapi takut ganggu, jadi gw tahan sambil sibukin diri.</p>
 
-<p>
-Harusnya orang bisa biasa aja kalau nggak ada kabar dari seseorang, tapi sama lu beda… gw malah nunggu.
-</p>
+<p>Harusnya orang bisa biasa aja kalau nggak ada kabar dari seseorang, tapi sama lu beda… gw malah nunggu.</p>
 
-<p>
-Gw kira awalnya lu cuma lewat doang di hidup gw, ternyata lu malah betah banget tinggal di pikiran gw tanpa minta izin.
-</p>
+<p>Gw kira awalnya lu cuma lewat doang di hidup gw, ternyata lu malah betah banget tinggal di pikiran gw tanpa minta izin.</p>
 
-<p>
-Kalau ditanya kenapa gw masih sering mikirin lu, gw juga nggak punya jawaban yang logis… yang jelas itu kejadian terus tanpa bisa gw stop.
-</p>
+<p>Kalau ditanya kenapa gw masih sering mikirin lu, gw juga nggak punya jawaban yang logis… yang jelas itu kejadian terus tanpa bisa gw stop.</p>
 
-<p>
-Lucunya, makin gw coba biasa aja, malah makin kerasa kalau lu punya tempat sendiri di kepala gw.
-</p>
+<p>Lucunya, makin gw coba biasa aja, malah makin kerasa kalau lu punya tempat sendiri di kepala gw.</p>
 
-<p>
-Gw nggak tau ini namanya apa, tapi kalau suatu hari lu ngerasa ada yang diam-diam peduli sama lu, bisa jadi itu gw.
-</p>
+<p>Gw nggak tau ini namanya apa, tapi kalau suatu hari lu ngerasa ada yang diam-diam peduli sama lu, bisa jadi itu gw.</p>
 
-<p>
-Udah ya, jangan tidur terlalu malem. Mata lu juga butuh istirahat, bukan cuma pikiran.  
-Gw harap malem ini lu tidur nyenyak, mimpi yang enak, dan bangun besok dengan mood yang lebih bagus.
-</p>
+<p>Udah ya, jangan tidur terlalu malem. Mata lu juga butuh istirahat, bukan cuma pikiran.  
+Gw harap malem ini lu tidur nyenyak, mimpi yang enak, dan bangun besok dengan mood yang lebih bagus.</p>
 
-<p>
-Good night ya, cantik 🌙💖
-</p>
+<p>Good night ya, cantik 🌙💖</p>
 
 <button onclick="next('q1')">Lanjuttt</button>
 
 </div>
 
-<!-- Q1 -->
-<div id="q1" class="container card hidden">
-  <h3>Apa kabar lu hari ini?</h3>
-  <textarea id="jawab1"></textarea>
-  <button onclick="next('q2')">Lanjut</button>
+<!-- Q -->
+<div id="q1" class="step">
+<h3>Apa kabar lu hari ini?</h3>
+<textarea id="jawab1"></textarea>
+<button onclick="cekQ1()">Lanjut</button>
 </div>
 
-<!-- Q2 -->
-<div id="q2" class="container card hidden">
-  <h3>ceritain dong hari ini gimana?</h3>
-  <textarea id="jawab2"></textarea>
-  <button onclick="next('q3')">Lanjuttt</button>
+<div id="q2" class="step">
+<h3>ceritain dong hari ini gimana?</h3>
+<textarea id="jawab2"></textarea>
+<button onclick="cekQ2()">Lanjut</button>
 </div>
 
-<!-- Q3 -->
-<div id="q3" class="container card hidden">
-  <h3>Menurut lu gw gimana sih orangnya?</h3>
-  <textarea id="jawab3"></textarea>
-  <button onclick="next('q4')">Lanjuttttt</button>
+<div id="q3" class="step">
+<h3>Menurut lu gw gimana sih orangnya?</h3>
+<textarea id="jawab3"></textarea>
+<button onclick="cekQ3()">Lanjut</button>
 </div>
 
-<!-- Q4 -->
-<div id="q4" class="container card hidden">
-  <h3>Harapanlu di bulan ini dong???</h3>
-  <textarea id="jawab4"></textarea>
-  <button onclick="send()">Kirim</button>
+<div id="q4" class="step">
+<h3>Harapanlu di bulan ini dong???</h3>
+<textarea id="jawab4"></textarea>
+<button onclick="cekQ4()">Kirim</button>
 </div>
 
 <!-- CLOSING -->
 <div id="closing" class="container card hidden">
-  <h1>Good Nightttt Chloee 💖</h1>
-  <p>godd nightt</p>
+<h1>Good Nightttt Chloee 💖</h1>
+<p>godd nightt</p>
 </div>
 
-<!-- AUDIO -->
+<!-- MUSIC -->
 <audio id="music" loop>
-  <source src="melukis-senja.mp3" type="audio/mp3">
+<source src="melukis-senja.mp3" type="audio/mp3">
 </audio>
 
 <script>
 
 function openEnvelope(){
-  document.querySelector('.envelope').classList.add('open');
-
-  setTimeout(()=>{
-    document.getElementById('envelopePage').classList.add('hidden');
-    document.getElementById('intro').classList.remove('hidden');
-  }, 800);
+  document.getElementById("envelopePage").classList.add("hidden");
+  document.getElementById("intro").classList.remove("hidden");
 }
 
 function start(){
-  document.getElementById("intro").classList.add('hidden');
-  document.getElementById("passwordPage").classList.remove('hidden');
+  document.getElementById("intro").classList.add("hidden");
+  document.getElementById("passwordPage").classList.remove("hidden");
 
-  const music = document.getElementById("music");
-  music.volume = 0.6;
-
-  const playPromise = music.play();
-
-  if (playPromise !== undefined) {
-    playPromise.catch(() => {
-      document.body.addEventListener("click", () => {
-        music.play();
-      }, { once: true });
-    });
-  }
-
-  createHearts();
+  document.getElementById("music").play().catch(()=>{});
 }
 
 function checkPassword(){
-  const password = document.getElementById("password").value;
+  let pw = document.getElementById("password").value;
 
-  if(password === "chloecantik"){
-    document.getElementById('passwordPage').classList.add('hidden');
-    document.getElementById('messagePage').classList.remove('hidden');
+  if(pw === "chloecantik"){
+    document.getElementById("passwordPage").classList.add("hidden");
+    document.getElementById("messagePage").classList.remove("hidden");
   } else {
-    alert("kan gw udh sring kirimmm, yg diulang2 ituloh");
+    alert("kan akuu udah kirim terus di iggg");
   }
 }
 
 function next(id){
-  document.querySelectorAll('.container').forEach(e => e.classList.add('hidden'));
-  document.getElementById(id).classList.remove('hidden');
+  document.querySelectorAll('.step, .container').forEach(e=>{
+    if(e.id !== "envelopePage") e.classList.add("hidden");
+  });
+  document.getElementById(id).classList.remove("hidden");
+}
+
+/* VALIDASI WAJIB ISI */
+function cekQ1(){
+  if(jawab1.value.trim()===""){ alert("wajib di isi CANTIKK"); return; }
+  next('q2');
+}
+
+function cekQ2(){
+  if(jawab2.value.trim()===""){ alert("Wajib di isi CANTIK"); return; }
+  next('q3');
+}
+
+function cekQ3(){
+  if(jawab3.value.trim()===""){ alert("wajib di isi CANTIK"); return; }
+  next('q4');
+}
+
+function cekQ4(){
+  if(jawab4.value.trim()===""){ alert("wajib di isi CANTIKK"); return; }
+  send();
 }
 
 function send(){
@@ -351,26 +251,14 @@ function send(){
   formData.append("Harapan", jawab4.value);
 
   fetch("https://formspree.io/f/xpqbqrka", {
-    method: "POST",
-    body: formData,
-    headers: { 'Accept': 'application/json' }
+    method:"POST",
+    body:formData,
+    headers:{'Accept':'application/json'}
   }).then(res=>{
     if(res.ok){
       next('closing');
-      document.body.classList.add("fade-out");
     }
   });
-}
-
-function createHearts(){
-  setInterval(()=>{
-    let h=document.createElement("div");
-    h.className="heart";
-    h.innerHTML="💖";
-    h.style.left=Math.random()*100+"vw";
-    document.body.appendChild(h);
-    setTimeout(()=>h.remove(),6000);
-  },400);
 }
 
 </script>
