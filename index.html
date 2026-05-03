@@ -98,9 +98,9 @@ textarea, input {
 
 <body>
 
-<!-- FIX MUSIK -->
-<audio id="music" loop preload="auto">
-  <source src="melukis-senja.mp3" type="audio/mp3">
+<!-- MUSIK -->
+<audio id="music" loop>
+  <source src="melukis-senja.mp3" type="audio/mpeg">
 </audio>
 
 <div id="envelopePage" class="container">
@@ -128,17 +128,6 @@ textarea, input {
 <p>Selamat malam Cantikkkk 💖</p>
 <p>Gimana hari ini? Capek nggak? Atau ada hal yang bikin kepala lu penuh banget sampe rasanya pengen berhenti sebentar aja? Cerita lah dikit ke gw, jangan dipendem sendiri terus. Gw pengen tau hari lu kayak apa, baik itu yang enak atau yang bikin kesel.</p>
 <p>Gw doain ya, semoga semua hal yang lu jalanin hari ini walaupun berat, tetap ada hasil baiknya. Semoga Tuhan lancarin urusan lu, dimudahin hidup lu, ditenangin pikirannya, dan dijaga hatinya. Kalau tadi ada hal yang bikin lu capek, semoga malam ini jadi momen buat lu istirahat bener-bener, bukan cuma tidur tapi juga nenangin diri.</p>
-<p>Semangat ya apa pun yang lu lakukan, bahkan waktu scroll semangat ya scrollnya 😄 Maaf ya kalo ada orang kaya gw yang selalu ganggu waktu lu, dan makasih juga ya udah ada di hidup gw. Lu selalu menghibur lewat chat atau apapun itu.</p>
-<p>Tapi jujur ya… aneh nggak sih? Gw kadang mikir, hari gw tuh jadi agak beda sejak ada lu. Bukan karena hal besar, tapi karena hal kecil kayak nunggu kabar lu, atau sekadar kepikiran “lu lagi ngapain ya sekarang?” Kayak… lu tuh tipe orang yang bikin candu.</p>
-<p>Gw nggak tau lu sadar atau nggak, tapi tiap hari gw selalu nyempetin mikirin lu. Pengen chat tapi takut ganggu, jadi gw tahan sambil sibukin diri.</p>
-<p>Harusnya orang bisa biasa aja kalau nggak ada kabar dari seseorang, tapi sama lu beda… gw malah nunggu.</p>
-<p>Gw kira awalnya lu cuma lewat doang di hidup gw, ternyata lu malah betah banget tinggal di pikiran gw tanpa minta izin.</p>
-<p>Kalau ditanya kenapa gw masih sering mikirin lu, gw juga nggak punya jawaban yang logis… yang jelas itu kejadian terus tanpa bisa gw stop.</p>
-<p>Lucunya, makin gw coba biasa aja, malah makin kerasa kalau lu punya tempat sendiri di kepala gw.</p>
-<p>Gw nggak tau ini namanya apa, tapi kalau suatu hari lu ngerasa ada yang diam-diam peduli sama lu, bisa jadi itu gw.</p>
-<p>Udah ya, jangan tidur terlalu malem. Mata lu juga butuh istirahat, bukan cuma pikiran.  
-Gw harap malem ini lu tidur nyenyak, mimpi yang enak, dan bangun besok dengan mood yang lebih bagus.</p>
-<p>Good night ya, cantik 🌙💖</p>
 
 <button onclick="next('q1')">Lanjuttt</button>
 
@@ -176,14 +165,15 @@ Gw harap malem ini lu tidur nyenyak, mimpi yang enak, dan bangun besok dengan mo
 
 let music = document.getElementById("music");
 
-/* FIX MUSIK ONLY */
+/* 🔥 MUSIK PALING STABIL (AUTO NYALA SAAT BUKA) */
 function playMusic(){
+  music.currentTime = 0;
   music.volume = 1;
+
   let playPromise = music.play();
 
-  if (playPromise !== undefined) {
+  if(playPromise !== undefined){
     playPromise.catch(() => {
-      // kalau diblok browser, tunggu klik user
       document.body.addEventListener("click", () => {
         music.play();
       }, { once: true });
@@ -191,16 +181,18 @@ function playMusic(){
   }
 }
 
-/* panggil musik di setiap interaksi user */
+/* START UTAMA */
 function openEnvelope(){
   document.getElementById("envelopePage").classList.add("hidden");
   document.getElementById("intro").classList.remove("hidden");
-  playMusic();
+
+  playMusic(); // 🔥 NYALA PAS BUKA SURAT
 }
 
 function start(){
   document.getElementById("intro").classList.add("hidden");
   document.getElementById("passwordPage").classList.remove("hidden");
+
   playMusic();
 }
 
@@ -210,14 +202,14 @@ function checkPassword(){
   if(pw === "chloecantik"){
     document.getElementById("passwordPage").classList.add("hidden");
     document.getElementById("messagePage").classList.remove("hidden");
+
     playMusic();
   } else {
     alert("kan akuu udah kirim terus di iggg");
   }
 }
 
-/* sisanya TIDAK DIUBAH */
-function showOnly(id){
+function next(id){
   document.querySelectorAll('.step').forEach(e=>{
     e.classList.remove("active");
   });
@@ -228,10 +220,7 @@ function showOnly(id){
   }
 }
 
-function next(id){
-  showOnly(id);
-}
-
+/* VALIDASI */
 function cekQ1(){
   if(!document.getElementById("jawab1").value.trim())
     return alert("wajib di isi ya cantik");
