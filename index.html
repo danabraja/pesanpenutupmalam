@@ -128,25 +128,28 @@ button {
   <button onclick="nextPage('q1')">Lanjut</button>
 </div>
 
-<!-- Q -->
+<!-- Q1 -->
 <div id="q1" class="container card hidden">
   <h3>Apa kabar hari ini?</h3>
   <textarea id="jawab1"></textarea>
   <button onclick="nextPage('q2')">Lanjut</button>
 </div>
 
+<!-- Q2 -->
 <div id="q2" class="container card hidden">
   <h3>Ceritain harimu</h3>
   <textarea id="jawab2"></textarea>
   <button onclick="nextPage('q3')">Lanjut</button>
 </div>
 
+<!-- Q3 -->
 <div id="q3" class="container card hidden">
   <h3>Menurut kamu aku gimana?</h3>
   <textarea id="jawab3"></textarea>
   <button onclick="nextPage('q4')">Lanjut</button>
 </div>
 
+<!-- Q4 -->
 <div id="q4" class="container card hidden">
   <h3>Harapan kamu?</h3>
   <textarea id="jawab4"></textarea>
@@ -158,14 +161,12 @@ button {
   <h1>Good Night 💖</h1>
 </div>
 
-<!-- AUDIO (LAGU FIX) -->
+<!-- AUDIO -->
 <audio id="music" loop>
   <source src="melukis-senja.mp3" type="audio/mp3">
 </audio>
 
 <script>
-
-const music = document.getElementById("music");
 
 function openEnvelope(){
   document.querySelector('.envelope').classList.add('open');
@@ -176,14 +177,16 @@ function openEnvelope(){
   }, 800);
 }
 
+/* 🔥 MUSIK NYALA DI SINI (PAS KLIK BUKA) */
 function start(){
   document.getElementById('intro').classList.add('hidden');
   document.getElementById('passwordPage').classList.remove('hidden');
 
-  createHearts();
+  const music = document.getElementById("music");
+  music.volume = 0.6;
+  music.play().catch(err => console.log("music blocked:", err));
 
-  // FIX: harus dari user interaction biar gak ke-block
-  music.play().catch(()=>console.log("autoplay blocked"));
+  createHearts();
 }
 
 function checkPassword(){
@@ -223,7 +226,7 @@ function send(){
   }).then(res=>{
     if(res.ok){
       nextPage('closing');
-      document.body.style.opacity = "0.5";
+      document.body.style.opacity = "0.7";
     }
   });
 }
