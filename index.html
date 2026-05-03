@@ -98,6 +98,11 @@ textarea, input {
 
 <body>
 
+<!-- MUSIK (FIX) -->
+<audio id="music" loop>
+  <source src="melukis-senja.mp3" type="audio/mp3">
+</audio>
+
 <div id="envelopePage" class="container">
   <div class="envelope" onclick="openEnvelope()">
     <div class="flap"></div>
@@ -139,7 +144,6 @@ Gw harap malem ini lu tidur nyenyak, mimpi yang enak, dan bangun besok dengan mo
 
 </div>
 
-<!-- STEPS -->
 <div id="q1" class="step">
 <h3>Apa kabar lu hari ini?</h3>
 <textarea id="jawab1"></textarea>
@@ -170,9 +174,19 @@ Gw harap malem ini lu tidur nyenyak, mimpi yang enak, dan bangun besok dengan mo
 
 <script>
 
+let music = document.getElementById("music");
+
+/* FIX MUSIC */
+function playMusic(){
+  music.play().catch(()=>{});
+}
+
+/* FIX SHOW PAGE BUG */
 function showOnly(id){
   document.querySelectorAll('.container').forEach(e=>{
-    if(e.id !== "envelopePage") e.classList.add("hidden");
+    if(e.id !== "envelopePage"){
+      e.classList.add("hidden");
+    }
   });
 
   document.querySelectorAll('.step').forEach(e=>{
@@ -181,18 +195,23 @@ function showOnly(id){
 
   let target = document.getElementById(id);
   if(target){
-    target.classList.add("active");
+    target.classList.remove("hidden"); // FIX PENTING
+    if(target.classList.contains("step")){
+      target.classList.add("active");
+    }
   }
 }
 
 function openEnvelope(){
   document.getElementById("envelopePage").classList.add("hidden");
   document.getElementById("intro").classList.remove("hidden");
+  playMusic();
 }
 
 function start(){
   document.getElementById("intro").classList.add("hidden");
   document.getElementById("passwordPage").classList.remove("hidden");
+  playMusic();
 }
 
 function checkPassword(){
@@ -201,6 +220,7 @@ function checkPassword(){
   if(pw === "chloecantik"){
     document.getElementById("passwordPage").classList.add("hidden");
     document.getElementById("messagePage").classList.remove("hidden");
+    playMusic();
   } else {
     alert("kan akuu udah kirim terus di iggg");
   }
@@ -210,7 +230,7 @@ function next(id){
   showOnly(id);
 }
 
-/* FIX ERROR TANPA UBAH ISI */
+/* FIX QUESTION */
 function cekQ1(){
   if(!document.getElementById("jawab1").value.trim())
     return alert("wajib di isi ya cantik");
