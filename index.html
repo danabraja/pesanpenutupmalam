@@ -91,21 +91,88 @@ textarea { height: 100px; }
     transform: scale(1.1);
   }
 }
+
+/* TAMBAHAN ANIMASI SURAT */
+.envelope {
+  position: relative;
+  width: 200px;
+  height: 130px;
+  background: #ff4da6;
+  margin: 120px auto;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(255,105,180,0.7);
+  animation: slideUp 1.2s ease;
+}
+
+.flap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #ff1a75;
+  clip-path: polygon(0 0, 50% 50%, 100% 0);
+  transition: 0.6s;
+  transform-origin: top;
+}
+
+.letter {
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  background: white;
+  color: #ff4da6;
+  top: 5%;
+  left: 5%;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  transform: translateY(20px);
+  transition: 0.6s;
+}
+
+.envelope.open .flap {
+  transform: rotateX(180deg);
+}
+
+.envelope.open .letter {
+  transform: translateY(-60px);
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 </style>
 </head>
 
 <body>
-
+<!-- ENVELOPE -->
+<div id="envelopePage" class="container">
+  <div class="envelope" onclick="openEnvelope()">
+    <div class="flap"></div>
+    <div class="letter">💌</div>
+  </div>
+  <p>Klik suratnyaa </p>
+</div>
+  
 <!-- INTRO -->
-<div id="intro" class="container card">
-  <h1>💌 Surat Malam untuk Chloee</h1>
-  <div>edisi pengantar tidur</div>
-  <button onclick="start()">Buka 💖</button>
+<div id="intro" class="container card hidden">
+  <h1>💌Sepucuk kata di ujung hariiii</h1>
+  <div>untuk Chloee</div>
+  <button onclick="start()">Bukaa</button>
 </div>
 
 <!-- PASSWORD -->
 <div id="passwordPage" class="container card hidden">
-  <h2>Password dulu ya 😆</h2>
+  <h2>eitss masukin secret code dluu yaaa</h2>
   <input type="password" id="password">
   <button onclick="checkPassword()">Masuk</button>
 </div>
@@ -113,47 +180,49 @@ textarea { height: 100px; }
 <!-- PESAN -->
 <div id="messagePage" class="container card hidden">
   <p>
-  selamat malam Chloee 🌙✨ <br><br>
-  balik lagi sama pesan random gw… 😆 <br><br>
-  semoga hari lu tetap baik ya 😁<br><br>
-  jangan lupa istirahat 🤍<br><br>
-  good night chloeeee 💖
+  selamat malam Cantikkkk <br><br>
+  balik lagi sama gw di pesan gw ini, maaf ya kalo pesan ini selalu mengganggu lu <br><br>
+  semoga lu sehat sehat trus ya, umur yang panjang, dan dijauhkan dari segala marah bahaya
+    smoga lu selalu diberikan kebahagiaan, smoga smua targetlu tercapai, dan smoga lu kuat disaat menghadapi rintangan
+    intinya jangan lupa Tuhan yaa<br><br>
+  sama jangan lupa istirahat juga yaa, jangan terlalu memaksakan diri lu santai aja, utamain dirilu ya,smangat utk hari esokk<br><br>
+  good night chloeeee <br><br>
   </p>
-  <button onclick="next('q1')">Lanjut ➡️</button>
+  <button onclick="next('q1')">Lanjuttt</button>
 </div>
 
 <!-- Q1 -->
 <div id="q1" class="container card hidden">
-  <h3>Apa kabar kamu hari ini?</h3>
+  <h3>Apa kabar lu hari ini?</h3>
   <textarea id="jawab1"></textarea>
   <button onclick="next('q2')">Lanjut</button>
 </div>
 
 <!-- Q2 -->
 <div id="q2" class="container card hidden">
-  <h3>Cerita hari ini?</h3>
+  <h3>ceritain dong hari ini gimana?</h3>
   <textarea id="jawab2"></textarea>
-  <button onclick="next('q3')">Lanjut</button>
+  <button onclick="next('q3')">Lanjuttt</button>
 </div>
 
 <!-- Q3 -->
 <div id="q3" class="container card hidden">
-  <h3>Menurut kamu aku gimana?</h3>
+  <h3>Menurut lu gw gimana sih orangnya?</h3>
   <textarea id="jawab3"></textarea>
-  <button onclick="next('q4')">Lanjut</button>
+  <button onclick="next('q4')">Lanjuttt</button>
 </div>
 
 <!-- Q4 -->
 <div id="q4" class="container card hidden">
-  <h3>Harapan kamu bulan ini?</h3>
+  <h3>Harapanlu di bulan ini dong???</h3>
   <textarea id="jawab4"></textarea>
-  <button onclick="send()">Kirim 💌</button>
+  <button onclick="send()">Kirim</button>
 </div>
 
 <!-- CLOSING -->
 <div id="closing" class="container card hidden">
-  <h1>Good Night 💖</h1>
-  <p>see you in dreams 🌙</p>
+  <h1>Good Nightttt Chloee 💖</h1>
+  <p>see you in dreams</p>
 </div>
 
 <audio id="music" loop>
@@ -161,6 +230,15 @@ textarea { height: 100px; }
 </audio>
 
 <script>
+function openEnvelope(){
+  document.querySelector('.envelope').classList.add('open');
+
+  setTimeout(()=>{
+    document.getElementById('envelopePage').classList.add('hidden');
+    document.getElementById('intro').classList.remove('hidden');
+  }, 800);
+}
+
 function start(){
   intro.classList.add('hidden');
   passwordPage.classList.remove('hidden');
