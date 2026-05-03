@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>pesan Malam 💖</title>
+<title>Surat Malam 💖</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
@@ -23,6 +23,7 @@ body {
   background-size: cover;
   color: white;
   text-align: center;
+  overflow-x: hidden;
 }
 
 .container { padding: 30px; }
@@ -33,6 +34,7 @@ body {
   border-radius: 25px;
   padding: 25px;
   margin: 20px;
+  box-shadow: 0 0 25px rgba(255,105,180,0.5);
 }
 
 button {
@@ -53,8 +55,39 @@ textarea, input {
   border: none;
 }
 
-/* FIX SYSTEM */
 .hidden { display: none; }
+
+.envelope {
+  width: 200px;
+  height: 130px;
+  background: #ff4da6;
+  margin: 120px auto;
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+}
+
+.flap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #ff1a75;
+  clip-path: polygon(0 0, 50% 50%, 100% 0);
+}
+
+.letter {
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  background: white;
+  color: #ff4da6;
+  top: 5%;
+  left: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+}
 
 .step { display: none; }
 
@@ -65,60 +98,48 @@ textarea, input {
 
 <body>
 
-<!-- ENVELOPE -->
 <div id="envelopePage" class="container">
-  <button onclick="openEnvelope()">💌 pencet suratnyaa</button>
+  <div class="envelope" onclick="openEnvelope()">
+    <div class="flap"></div>
+    <div class="letter">💌</div>
+  </div>
+  <p>pencet suratnyaa</p>
 </div>
 
-<!-- INTRO -->
 <div id="intro" class="container card hidden">
   <h1>💌Sepucuk kata di ujung hariiii</h1>
   <div>untuk Chloee</div>
   <button onclick="start()">Bukaa</button>
 </div>
 
-<!-- PASSWORD -->
 <div id="passwordPage" class="container card hidden">
   <h2>eitss masukin secret code dluu yaaa</h2>
   <input type="password" id="password">
   <button onclick="checkPassword()">Masuk</button>
 </div>
 
-<!-- MESSAGE (TEKS KAMU TETAP 100%) -->
 <div id="messagePage" class="container card hidden">
 
 <p>Selamat malam Cantikkkk 💖</p>
-
 <p>Gimana hari ini? Capek nggak? Atau ada hal yang bikin kepala lu penuh banget sampe rasanya pengen berhenti sebentar aja? Cerita lah dikit ke gw, jangan dipendem sendiri terus. Gw pengen tau hari lu kayak apa, baik itu yang enak atau yang bikin kesel.</p>
-
 <p>Gw doain ya, semoga semua hal yang lu jalanin hari ini walaupun berat, tetap ada hasil baiknya. Semoga Tuhan lancarin urusan lu, dimudahin hidup lu, ditenangin pikirannya, dan dijaga hatinya. Kalau tadi ada hal yang bikin lu capek, semoga malam ini jadi momen buat lu istirahat bener-bener, bukan cuma tidur tapi juga nenangin diri.</p>
-
 <p>Semangat ya apa pun yang lu lakukan, bahkan waktu scroll semangat ya scrollnya 😄 Maaf ya kalo ada orang kaya gw yang selalu ganggu waktu lu, dan makasih juga ya udah ada di hidup gw. Lu selalu menghibur lewat chat atau apapun itu.</p>
-
 <p>Tapi jujur ya… aneh nggak sih? Gw kadang mikir, hari gw tuh jadi agak beda sejak ada lu. Bukan karena hal besar, tapi karena hal kecil kayak nunggu kabar lu, atau sekadar kepikiran “lu lagi ngapain ya sekarang?” Kayak… lu tuh tipe orang yang bikin candu.</p>
-
 <p>Gw nggak tau lu sadar atau nggak, tapi tiap hari gw selalu nyempetin mikirin lu. Pengen chat tapi takut ganggu, jadi gw tahan sambil sibukin diri.</p>
-
 <p>Harusnya orang bisa biasa aja kalau nggak ada kabar dari seseorang, tapi sama lu beda… gw malah nunggu.</p>
-
 <p>Gw kira awalnya lu cuma lewat doang di hidup gw, ternyata lu malah betah banget tinggal di pikiran gw tanpa minta izin.</p>
-
 <p>Kalau ditanya kenapa gw masih sering mikirin lu, gw juga nggak punya jawaban yang logis… yang jelas itu kejadian terus tanpa bisa gw stop.</p>
-
 <p>Lucunya, makin gw coba biasa aja, malah makin kerasa kalau lu punya tempat sendiri di kepala gw.</p>
-
 <p>Gw nggak tau ini namanya apa, tapi kalau suatu hari lu ngerasa ada yang diam-diam peduli sama lu, bisa jadi itu gw.</p>
-
 <p>Udah ya, jangan tidur terlalu malem. Mata lu juga butuh istirahat, bukan cuma pikiran.  
 Gw harap malem ini lu tidur nyenyak, mimpi yang enak, dan bangun besok dengan mood yang lebih bagus.</p>
-
 <p>Good night ya, cantik 🌙💖</p>
 
 <button onclick="next('q1')">Lanjuttt</button>
 
 </div>
 
-<!-- Q -->
+<!-- STEPS -->
 <div id="q1" class="step">
 <h3>Apa kabar lu hari ini?</h3>
 <textarea id="jawab1"></textarea>
@@ -143,25 +164,25 @@ Gw harap malem ini lu tidur nyenyak, mimpi yang enak, dan bangun besok dengan mo
 <button onclick="cekQ4()">Kirim</button>
 </div>
 
-<!-- CLOSING -->
 <div id="closing" class="container card hidden">
 <h1>Good Nightttt Chloee 💖</h1>
 </div>
 
 <script>
 
-/* NAVIGASI FIX TOTAL */
-function showStep(id){
+/* NAV FIX (INI KUNCI BIAR GAK ERROR) */
+function showOnly(id){
+  document.querySelectorAll('.container').forEach(e=>{
+    if(e.id !== "envelopePage") e.classList.add("hidden");
+  });
 
-  document.getElementById("messagePage").classList.add("hidden");
-
-  let all = document.querySelectorAll('.step');
-  all.forEach(e => e.classList.remove('active'));
+  document.querySelectorAll('.step').forEach(e=>{
+    e.classList.remove("active");
+  });
 
   let target = document.getElementById(id);
   if(target){
-    target.classList.add('active');
-    window.scrollTo(0,0);
+    target.classList.add("active");
   }
 }
 
@@ -187,9 +208,9 @@ function checkPassword(){
   }
 }
 
-/* NEXT */
+/* NEXT FIX */
 function next(id){
-  showStep(id);
+  showOnly(id);
 }
 
 /* VALIDASI */
