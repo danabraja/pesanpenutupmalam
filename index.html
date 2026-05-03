@@ -170,7 +170,6 @@ Gw harap malem ini lu tidur nyenyak, mimpi yang enak, dan bangun besok dengan mo
 
 <script>
 
-/* NAV FIX (INI KUNCI BIAR GAK ERROR) */
 function showOnly(id){
   document.querySelectorAll('.container').forEach(e=>{
     if(e.id !== "envelopePage") e.classList.add("hidden");
@@ -186,7 +185,6 @@ function showOnly(id){
   }
 }
 
-/* FLOW */
 function openEnvelope(){
   document.getElementById("envelopePage").classList.add("hidden");
   document.getElementById("intro").classList.remove("hidden");
@@ -208,29 +206,32 @@ function checkPassword(){
   }
 }
 
-/* NEXT FIX */
 function next(id){
   showOnly(id);
 }
 
-/* VALIDASI */
+/* FIX ERROR TANPA UBAH ISI */
 function cekQ1(){
-  if(!jawab1.value.trim()) return alert("wajib di isi ya cantik");
+  if(!document.getElementById("jawab1").value.trim())
+    return alert("wajib di isi ya cantik");
   next('q2');
 }
 
 function cekQ2(){
-  if(!jawab2.value.trim()) return alert("wajib di isi ya cantik");
+  if(!document.getElementById("jawab2").value.trim())
+    return alert("wajib di isi ya cantik");
   next('q3');
 }
 
 function cekQ3(){
-  if(!jawab3.value.trim()) return alert("wajib di isi ya cantik");
+  if(!document.getElementById("jawab3").value.trim())
+    return alert("wajib di isi ya cantik");
   next('q4');
 }
 
 function cekQ4(){
-  if(!jawab4.value.trim()) return alert("wajib di isi ya cantik");
+  if(!document.getElementById("jawab4").value.trim())
+    return alert("wajib di isi ya cantik");
   next('closing');
 }
 
