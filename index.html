@@ -9,24 +9,38 @@
 
 <style>
 
+/* FONT */
 @font-face {
   font-family: 'Honeybee';
   src: url('Honeybee.ttf') format('truetype');
+}
+
+html, body {
+  height: 100%;
 }
 
 body {
   margin: 0;
   font-family: 'Honeybee', 'Poppins', sans-serif;
   min-height: 100vh;
+
   background: linear-gradient(rgba(255,105,180,0.3), rgba(0,0,0,0.5)),
               url("bg.jpg") no-repeat center center;
+
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
   color: white;
   text-align: center;
   overflow-x: hidden;
+  transition: 1s;
 }
 
-.container { padding: 30px; }
+.container {
+  padding: 30px;
+  animation: fadeIn 0.8s ease;
+}
 
 .card {
   background: rgba(255,255,255,0.2);
@@ -34,37 +48,79 @@ body {
   border-radius: 25px;
   padding: 25px;
   margin: 20px;
-  box-shadow: 0 0 25px rgba(255,105,180,0.5);
+  box-shadow: 0 0 25px rgba(255, 105, 180, 0.5);
+}
+
+h1, h2 {
+  font-family: 'Honeybee', cursive;
 }
 
 button {
   padding: 12px 25px;
   border: none;
   border-radius: 30px;
-  background: linear-gradient(45deg,#ff1a75,#ff66b2);
+  background: linear-gradient(45deg, #ff1a75, #ff66b2);
   color: white;
   font-weight: bold;
   cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 0 15px rgba(255,105,180,0.7);
 }
 
-textarea, input {
+button:hover {
+  transform: scale(1.08);
+}
+
+input, textarea {
   width: 80%;
-  padding: 10px;
+  padding: 12px;
   margin: 10px 0;
-  border-radius: 10px;
+  border-radius: 15px;
   border: none;
 }
 
+textarea { height: 100px; }
+
 .hidden { display: none; }
 
+.heart {
+  position: fixed;
+  font-size: 20px;
+  animation: float 6s linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(100vh); opacity: 1; }
+  100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+@keyframes fadeIn {
+  from {opacity:0; transform: translateY(20px);}
+  to {opacity:1; transform: translateY(0);}
+}
+
+.fade-out {
+  animation: fadeOut 2s forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+}
+
+/* ENVELOPE */
 .envelope {
+  position: relative;
   width: 200px;
   height: 130px;
   background: #ff4da6;
   margin: 120px auto;
   border-radius: 10px;
   cursor: pointer;
-  position: relative;
+  box-shadow: 0 0 20px rgba(255,105,180,0.7);
+  animation: slideUp 1.2s ease;
 }
 
 .flap {
@@ -73,6 +129,8 @@ textarea, input {
   height: 100%;
   background: #ff1a75;
   clip-path: polygon(0 0, 50% 50%, 100% 0);
+  transition: 0.6s;
+  transform-origin: top;
 }
 
 .letter {
@@ -83,171 +141,183 @@ textarea, input {
   color: #ff4da6;
   top: 5%;
   left: 5%;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 40px;
+  transform: translateY(20px);
+  transition: 0.6s;
 }
 
-.step { display: none; }
+.envelope.open .flap {
+  transform: rotateX(180deg);
+}
 
-.step.active { display: block; }
+.envelope.open .letter {
+  transform: translateY(-60px);
+}
 
+@keyframes slideUp {
+  from {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<!-- MUSIK (TIDAK DIUBAH VISUALNYA) -->
-<audio id="music" loop preload="auto">
-  <source src="melukis-senja.mp3" type="audio/mpeg">
-</audio>
-
+<!-- ENVELOPE -->
 <div id="envelopePage" class="container">
   <div class="envelope" onclick="openEnvelope()">
     <div class="flap"></div>
     <div class="letter">💌</div>
   </div>
-  <p>pencet suratnyaa</p>
+  <p>Klik suratnyaa </p>
 </div>
-
+  
+<!-- INTRO -->
 <div id="intro" class="container card hidden">
   <h1>💌Sepucuk kata di ujung hariiii</h1>
   <div>untuk Chloee</div>
   <button onclick="start()">Bukaa</button>
 </div>
 
+<!-- PASSWORD -->
 <div id="passwordPage" class="container card hidden">
   <h2>eitss masukin secret code dluu yaaa</h2>
   <input type="password" id="password">
   <button onclick="checkPassword()">Masuk</button>
 </div>
 
+<!-- PESAN -->
 <div id="messagePage" class="container card hidden">
-
-<p>Selamat malam Cantikkkk 💖</p>
-<p>Gimana hari ini? Capek nggak? Atau ada hal yang bikin kepala lu penuh banget sampe rasanya pengen berhenti sebentar aja? Cerita lah dikit ke gw, jangan dipendem sendiri terus. Gw pengen tau hari lu kayak apa, baik itu yang enak atau yang bikin kesel.</p>
-
-<button onclick="next('q1')">Lanjuttt</button>
-
+  <p>
+  selamat malam Cantikkkk <br><br>
+  balik lagi sama gw di pesan gw ini, maaf ya kalo pesan ini selalu mengganggu lu <br><br>
+  semoga lu sehat sehat trus ya, umur yang panjang, dan dijauhkan dari segala marah bahaya
+  </p>
+  <button onclick="next('q1')">Lanjuttt</button>
 </div>
 
-<div id="q1" class="step">
-<h3>Apa kabar lu hari ini?</h3>
-<textarea id="jawab1"></textarea>
-<button onclick="cekQ1()">Lanjut</button>
+<!-- Q1 -->
+<div id="q1" class="container card hidden">
+  <h3>Apa kabar lu hari ini?</h3>
+  <textarea id="jawab1"></textarea>
+  <button onclick="next('q2')">Lanjut</button>
 </div>
 
-<div id="q2" class="step">
-<h3>ceritain dong hari ini gimana?</h3>
-<textarea id="jawab2"></textarea>
-<button onclick="cekQ2()">Lanjut</button>
+<!-- Q2 -->
+<div id="q2" class="container card hidden">
+  <h3>ceritain dong hari ini gimana?</h3>
+  <textarea id="jawab2"></textarea>
+  <button onclick="next('q3')">Lanjuttt</button>
 </div>
 
-<div id="q3" class="step">
-<h3>Menurut lu gw gimana sih orangnya?</h3>
-<textarea id="jawab3"></textarea>
-<button onclick="cekQ3()">Lanjut</button>
+<!-- Q3 -->
+<div id="q3" class="container card hidden">
+  <h3>Menurut lu gw gimana sih orangnya?</h3>
+  <textarea id="jawab3"></textarea>
+  <button onclick="next('q4')">Lanjuttt</button>
 </div>
 
-<div id="q4" class="step">
-<h3>Harapanlu di bulan ini dong???</h3>
-<textarea id="jawab4"></textarea>
-<button onclick="cekQ4()">Kirim</button>
+<!-- Q4 -->
+<div id="q4" class="container card hidden">
+  <h3>Harapanlu di bulan ini dong???</h3>
+  <textarea id="jawab4"></textarea>
+  <button onclick="send()">Kirim</button>
 </div>
 
+<!-- CLOSING -->
 <div id="closing" class="container card hidden">
-<h1>Good Nightttt Chloee 💖</h1>
+  <h1>Good Nightttt Chloee 💖</h1>
 </div>
+
+<!-- AUDIO -->
+<audio id="music" loop>
+  <source src="melukis-senja.mp3" type="audio/mp3">
+</audio>
 
 <script>
 
-let music = document.getElementById("music");
-let musicStarted = false;
+function openEnvelope(){
+  document.querySelector('.envelope').classList.add('open');
 
-/* 🔥 FIX MUSIK FINAL (NO RESTART, NO KEULANG) */
-function playMusic(){
-  if(musicStarted) return; // cuma jalan sekali
+  setTimeout(()=>{
+    document.getElementById('envelopePage').classList.add('hidden');
+    document.getElementById('intro').classList.remove('hidden');
+  }, 800);
+}
 
-  musicStarted = true;
-  music.volume = 1;
+/* 🔥 FIX ONLY MUSIK DI SINI */
+function start(){
+  intro.classList.add('hidden');
+  passwordPage.classList.remove('hidden');
 
-  let playPromise = music.play();
+  const music = document.getElementById("music");
+  music.volume = 0.6;
 
-  if(playPromise !== undefined){
+  // FIX AUTOPLAY BLOCK
+  const playPromise = music.play();
+  if (playPromise !== undefined) {
     playPromise.catch(() => {
-      const unlock = () => {
+      document.body.addEventListener("click", () => {
         music.play();
-        document.removeEventListener("click", unlock);
-      };
-      document.addEventListener("click", unlock);
+      }, { once: true });
     });
   }
-}
 
-/* NAVIGASI TANPA SENTUH TAMPILAN */
-function openEnvelope(){
-  document.getElementById("envelopePage").classList.add("hidden");
-  document.getElementById("intro").classList.remove("hidden");
-
-  playMusic();
-}
-
-function start(){
-  document.getElementById("intro").classList.add("hidden");
-  document.getElementById("passwordPage").classList.remove("hidden");
-
-  playMusic();
+  createHearts();
 }
 
 function checkPassword(){
-  let pw = document.getElementById("password").value;
-
-  if(pw === "chloecantik"){
-    document.getElementById("passwordPage").classList.add("hidden");
-    document.getElementById("messagePage").classList.remove("hidden");
-
-    playMusic();
+  if(password.value === "chloecantik"){
+    passwordPage.classList.add('hidden');
+    messagePage.classList.remove('hidden');
   } else {
-    alert("kan akuu udah kirim terus di iggg");
+    alert("Password salah 😅");
   }
 }
 
-/* STEP SYSTEM TETAP */
 function next(id){
-  document.querySelectorAll('.step').forEach(e=>{
-    e.classList.remove("active");
+  document.querySelectorAll('.container').forEach(e => e.classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+}
+
+function send(){
+  let formData = new FormData();
+  formData.append("Kabar", jawab1.value);
+  formData.append("Cerita", jawab2.value);
+  formData.append("Pendapat", jawab3.value);
+  formData.append("Harapan", jawab4.value);
+
+  fetch("https://formspree.io/f/xpqbqrka", {
+    method: "POST",
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  }).then(res=>{
+    if(res.ok){
+      next('closing');
+      document.body.classList.add("fade-out");
+    }
   });
-
-  let target = document.getElementById(id);
-  if(target){
-    target.classList.add("active");
-  }
 }
 
-/* VALIDASI TETAP */
-function cekQ1(){
-  if(!document.getElementById("jawab1").value.trim())
-    return alert("wajib di isi ya cantik");
-  next('q2');
-}
-
-function cekQ2(){
-  if(!document.getElementById("jawab2").value.trim())
-    return alert("wajib di isi ya cantik");
-  next('q3');
-}
-
-function cekQ3(){
-  if(!document.getElementById("jawab3").value.trim())
-    return alert("wajib di isi ya cantik");
-  next('q4');
-}
-
-function cekQ4(){
-  if(!document.getElementById("jawab4").value.trim())
-    return alert("wajib di isi ya cantik");
-  next('closing');
+function createHearts(){
+  setInterval(()=>{
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="💖";
+    h.style.left=Math.random()*100+"vw";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+  },400);
 }
 
 </script>
