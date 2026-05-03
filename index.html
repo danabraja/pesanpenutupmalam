@@ -1,192 +1,38 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Surat Malam 💖</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
-
-<style>
-
-@font-face {
-  font-family: 'Honeybee';
-  src: url('Honeybee.ttf') format('truetype');
-}
-
-body {
-  margin: 0;
-  font-family: 'Honeybee', 'Poppins', sans-serif;
-  min-height: 100vh;
-  background: linear-gradient(rgba(255,105,180,0.3), rgba(0,0,0,0.5)),
-              url("bg.jpg") no-repeat center center;
-  background-size: cover;
-  color: white;
-  text-align: center;
-  overflow-x: hidden;
-}
-
-.container { padding: 30px; }
-
-.card {
-  background: rgba(255,255,255,0.2);
-  backdrop-filter: blur(15px);
-  border-radius: 25px;
-  padding: 25px;
-  margin: 20px;
-  box-shadow: 0 0 25px rgba(255,105,180,0.5);
-}
-
-button {
-  padding: 12px 25px;
-  border: none;
-  border-radius: 30px;
-  background: linear-gradient(45deg,#ff1a75,#ff66b2);
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-textarea, input {
-  width: 80%;
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 10px;
-  border: none;
-}
-
-.hidden { display: none; }
-
-.envelope {
-  width: 200px;
-  height: 130px;
-  background: #ff4da6;
-  margin: 120px auto;
-  border-radius: 10px;
-  cursor: pointer;
-  position: relative;
-}
-
-.flap {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #ff1a75;
-  clip-path: polygon(0 0, 50% 50%, 100% 0);
-}
-
-.letter {
-  position: absolute;
-  width: 90%;
-  height: 90%;
-  background: white;
-  color: #ff4da6;
-  top: 5%;
-  left: 5%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 40px;
-}
-
-.step { display: none; }
-
-.step.active { display: block; }
-
-</style>
-</head>
-
-<body>
-
-<!-- MUSIK -->
-<audio id="music" loop>
+<!-- MUSIK (FIX FULL & AUTO PLAY STABLE) -->
+<audio id="music" loop preload="auto">
   <source src="melukis-senja.mp3" type="audio/mpeg">
 </audio>
-
-<div id="envelopePage" class="container">
-  <div class="envelope" onclick="openEnvelope()">
-    <div class="flap"></div>
-    <div class="letter">💌</div>
-  </div>
-  <p>pencet suratnyaa</p>
-</div>
-
-<div id="intro" class="container card hidden">
-  <h1>💌Sepucuk kata di ujung hariiii</h1>
-  <div>untuk Chloee</div>
-  <button onclick="start()">Bukaa</button>
-</div>
-
-<div id="passwordPage" class="container card hidden">
-  <h2>eitss masukin secret code dluu yaaa</h2>
-  <input type="password" id="password">
-  <button onclick="checkPassword()">Masuk</button>
-</div>
-
-<div id="messagePage" class="container card hidden">
-
-<p>Selamat malam Cantikkkk 💖</p>
-<p>Gimana hari ini? Capek nggak? Atau ada hal yang bikin kepala lu penuh banget sampe rasanya pengen berhenti sebentar aja? Cerita lah dikit ke gw, jangan dipendem sendiri terus. Gw pengen tau hari lu kayak apa, baik itu yang enak atau yang bikin kesel.</p>
-<p>Gw doain ya, semoga semua hal yang lu jalanin hari ini walaupun berat, tetap ada hasil baiknya. Semoga Tuhan lancarin urusan lu, dimudahin hidup lu, ditenangin pikirannya, dan dijaga hatinya. Kalau tadi ada hal yang bikin lu capek, semoga malam ini jadi momen buat lu istirahat bener-bener, bukan cuma tidur tapi juga nenangin diri.</p>
-
-<button onclick="next('q1')">Lanjuttt</button>
-
-</div>
-
-<div id="q1" class="step">
-<h3>Apa kabar lu hari ini?</h3>
-<textarea id="jawab1"></textarea>
-<button onclick="cekQ1()">Lanjut</button>
-</div>
-
-<div id="q2" class="step">
-<h3>ceritain dong hari ini gimana?</h3>
-<textarea id="jawab2"></textarea>
-<button onclick="cekQ2()">Lanjut</button>
-</div>
-
-<div id="q3" class="step">
-<h3>Menurut lu gw gimana sih orangnya?</h3>
-<textarea id="jawab3"></textarea>
-<button onclick="cekQ3()">Lanjut</button>
-</div>
-
-<div id="q4" class="step">
-<h3>Harapanlu di bulan ini dong???</h3>
-<textarea id="jawab4"></textarea>
-<button onclick="cekQ4()">Kirim</button>
-</div>
-
-<div id="closing" class="container card hidden">
-<h1>Good Nightttt Chloee 💖</h1>
-</div>
 
 <script>
 
 let music = document.getElementById("music");
 
-/* 🔥 MUSIK PALING STABIL (AUTO NYALA SAAT BUKA) */
+/* 🔥 FIX UTAMA: musik full + anti kepotong */
 function playMusic(){
-  music.currentTime = 0;
+  music.load();              // pastiin file ke-load full
+  music.currentTime = 0;     // mulai dari awal
   music.volume = 1;
 
   let playPromise = music.play();
 
   if(playPromise !== undefined){
     playPromise.catch(() => {
-      document.body.addEventListener("click", () => {
+      // fallback kalau diblock browser
+      const enableAudio = () => {
         music.play();
-      }, { once: true });
+        document.removeEventListener("click", enableAudio);
+      };
+      document.addEventListener("click", enableAudio);
     });
   }
 }
 
-/* START UTAMA */
+/* === YANG KAMU PUNYA TETEP === */
 function openEnvelope(){
   document.getElementById("envelopePage").classList.add("hidden");
   document.getElementById("intro").classList.remove("hidden");
 
-  playMusic(); // 🔥 NYALA PAS BUKA SURAT
+  playMusic(); // 🔥 NYALA PAS BUKA
 }
 
 function start(){
@@ -209,43 +55,4 @@ function checkPassword(){
   }
 }
 
-function next(id){
-  document.querySelectorAll('.step').forEach(e=>{
-    e.classList.remove("active");
-  });
-
-  let target = document.getElementById(id);
-  if(target){
-    target.classList.add("active");
-  }
-}
-
-/* VALIDASI */
-function cekQ1(){
-  if(!document.getElementById("jawab1").value.trim())
-    return alert("wajib di isi ya cantik");
-  next('q2');
-}
-
-function cekQ2(){
-  if(!document.getElementById("jawab2").value.trim())
-    return alert("wajib di isi ya cantik");
-  next('q3');
-}
-
-function cekQ3(){
-  if(!document.getElementById("jawab3").value.trim())
-    return alert("wajib di isi ya cantik");
-  next('q4');
-}
-
-function cekQ4(){
-  if(!document.getElementById("jawab4").value.trim())
-    return alert("wajib di isi ya cantik");
-  next('closing');
-}
-
 </script>
-
-</body>
-</html>
