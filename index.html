@@ -143,7 +143,8 @@ textarea, input {
 
 <p>Lucunya, makin gw coba biasa aja, malah makin kerasa kalau lu punya tempat sendiri di kepala gw.</p>
 
-<p>Gw nggak tau ini namanya apa, tapi kalau suatu hari lu ngerasa ada yang diam-diam peduli sama lu, bisa jadi itu gw.</p>
+<p>Gw nggak tau ini namanya apa, tapi kalau suatu hari lu ngerasa ada yang diam-diam peduli sama lu, bisa jadi itu gw.
+maaf ya gw ovt bngt</p>
 
 <p>Udah ya, jangan tidur terlalu malem. Mata lu juga butuh istirahat, bukan cuma pikiran.  
 Gw harap malem ini lu tidur nyenyak, mimpi yang enak, dan bangun besok dengan mood yang lebih bagus.</p>
@@ -164,13 +165,13 @@ Gw harap malem ini lu tidur nyenyak, mimpi yang enak, dan bangun besok dengan mo
 <div id="q2" class="step">
 <h3>ceritain dong hari ini gimana?</h3>
 <textarea id="jawab2"></textarea>
-<button onclick="cekQ2()">Lanjut</button>
+<button onclick="cekQ2()">Lanjutt</button>
 </div>
 
 <div id="q3" class="step">
 <h3>Menurut lu gw gimana sih orangnya?</h3>
 <textarea id="jawab3"></textarea>
-<button onclick="cekQ3()">Lanjut</button>
+<button onclick="cekQ3()">Lanjuttt</button>
 </div>
 
 <div id="q4" class="step">
@@ -200,7 +201,6 @@ function openEnvelope(){
 function start(){
   document.getElementById("intro").classList.add("hidden");
   document.getElementById("passwordPage").classList.remove("hidden");
-
   document.getElementById("music").play().catch(()=>{});
 }
 
@@ -215,9 +215,12 @@ function checkPassword(){
   }
 }
 
+/* FIX UTAMA NAVIGASI */
 function next(id){
 
-  // sembunyikan semua step + container message saja
+  document.getElementById("messagePage").classList.add("hidden");
+  document.getElementById("closing").classList.add("hidden");
+
   document.querySelectorAll('.step').forEach(e=>{
     e.classList.add('hidden');
   });
@@ -229,7 +232,7 @@ function next(id){
   }
 }
 
-/* VALIDASI WAJIB ISI */
+/* VALIDASI */
 function cekQ1(){
   const val = document.getElementById("jawab1").value.trim();
   if(!val){
